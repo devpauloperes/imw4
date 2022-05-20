@@ -53,16 +53,21 @@
 		<nav id="sidebar" class="sidebar">
 			<div class="text-center">
 				<a class="sidebar-brand" href="<?php echo base_url(); ?>">
-					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-branca.png" width="210" />
+					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-branca.png" width="190" />
 				</a>
 			</div>
 			<div class="sidebar-content">
 				<div class="sidebar-user">
 					<i class="align-middle me-2 fas fa-fw fa-user-circle" style="font-size: 60px;"></i>
 					<div class="fw-bold"><?php echo $_SESSION["UsuarioLogado"]["nome"]; ?></div>
-					<small> <?php echo $_SESSION["UsuarioLogado"]["email"]; ?></small>
+					<small> <?php echo $_SESSION["UsuarioLogado"]["email"]; ?></small><br />
+					<?php if (isset($_SESSION["Instituicao"])) :?>
+					<small> <b>INSTITUIÇÃO</b> <br> <?php echo $_SESSION["Instituicao"]["nome"]; ?></small>
+					<?php endif; ?>
 				</div>
+				<?php if (isset($_SESSION["Instituicao"])) :?>
 				 <?php echo $this->include("Includes/menus"); ?> 
+				<?php endif; ?>
 				
 			</div>
 		</nav>
@@ -72,10 +77,13 @@
 					<i class="hamburger align-self-center"></i>
 				</a>
 
-				<form class="d-none d-sm-inline-block" action="<?php echo base_url(); ?>/promotores" method="GET">
+				<!-- <form class="d-none d-sm-inline-block" action="<?php echo base_url(); ?>/promotores" method="GET">
 					<input class="form-control form-control-lite" name="nome" type="text" placeholder="Pesquisar no sistema">
-				</form>
-
+				</form> -->
+				<div class="col-6 breadcrumb-item">
+				
+					<a href="<?php echo base_url(); ?>/selecionar-instituicao" style="margin-left: 10px"> <i class="fas fa-fw fa-church"></i> Trocar de Instituição </a>
+				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item dropdown active">

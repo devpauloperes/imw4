@@ -100,3 +100,101 @@ CREATE TABLE IF NOT EXISTS Instituicao (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+
+DROP TABLE IF EXISTS Pessoa;
+CREATE TABLE IF NOT EXISTS Pessoa (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  
+  nome varchar(255) not null,
+  dataNascimento datetime not null,
+  email varchar(200),
+  cpf varchar(11),
+  foto varchar(255),
+  estadoCivil varchar(1),
+  nomeConjuge varchar(255),
+  nomePai varchar(255),
+  nomeMae varchar(255),
+    
+  cep varchar(20),
+  endereco varchar(255),
+  numero varchar(20),
+  complemento varchar(255),
+  bairro varchar(255),
+  cidade varchar(255),
+  estado varchar(2),
+  pais varchar(30),
+  telefone varchar(20),
+  celular varchar(20),
+  filhos text,
+
+  isAtivo boolean NOT NULL,
+  dataInativo datetime,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS Membro;
+CREATE TABLE IF NOT EXISTS Membro (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  
+  pessoaId int,
+  numeroRolPermanente int not null,
+  anoConversao int not null,
+  dataBatismo datetime not null,
+  profissao varchar(200),
+  situacao int,
+  instituicaoId int,
+
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS MembroHistorico;
+CREATE TABLE IF NOT EXISTS MembroHistorico (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  
+  membroId int not null,
+  dataMovimentacao datetime not null,
+  instituicaoId int,
+  descricao text not null,
+
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS MembroCapacitacao;
+CREATE TABLE IF NOT EXISTS MembroCapacitacao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  
+  membroId int not null,
+  dataCapacitacao datetime not null,
+  nome varchar(200) not null,
+  cargaHoraria int,
+
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;

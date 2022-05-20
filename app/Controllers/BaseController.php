@@ -37,6 +37,7 @@ class BaseController extends Controller
      */
     protected $helpers = [];
     protected $usuario = null;
+    protected $instituicao = null;
     
     /**
      * Constructor.
@@ -47,6 +48,7 @@ class BaseController extends Controller
         parent::initController($request, $response, $logger);
         $session =  \Config\Services::session(); 
 		$this->usuario = $session->get("UsuarioLogado");		
+		$this->instituicao = $session->get("Instituicao");		
 
 
         // Preload any models, libraries, etc, here.

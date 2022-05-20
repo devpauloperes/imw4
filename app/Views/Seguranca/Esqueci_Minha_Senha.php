@@ -12,7 +12,7 @@
             </div>
 
             <div class="text-center mt-3">
-                <button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Recuperar Senha</button>
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit" name="submit">Recuperar Senha</button>
             </div>
         </form>
     

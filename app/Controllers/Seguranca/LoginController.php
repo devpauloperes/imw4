@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\Seguranca;
 
 use App\Controllers\BaseController;
+use App\Models\UsuarioInstituicaoModel;
 use App\Models\UsuarioModel;
 
 class LoginController extends BaseController
@@ -31,13 +32,24 @@ class LoginController extends BaseController
 			{
 				$session->set("UsuarioLogado", $usuarioLogado);
 
+				$usuarioInstituicaoModel = new UsuarioInstituicaoModel();
+				$usuarioInstituicoes = $usuarioInstituicaoModel->where("usuarioId", $usuarioLogado["id"])->findAll();
+
 				//consulta se existe instituicao vinculada
-
+				if ($usuarioInstituicoes == null){
+					return redirect()->to(base_url());
+				}
 				//se existir apenas 1 instituicao, redireciona diretamente para a instituicao
-
+				else if (count($usuarioInstituicoes) == 1){
+					$instituicao = $usuarioInstituicoes[0];
+					return redirect()->to(base_url("selecionar-instituicao/" . $instituicao["instituicaoId"] ));
+				}
 				//se existir mais de 1 instituicao, redireciona para a seleção de instituições
+				else if (count($usuarioInstituicoes) > 1){ 
+					return redirect()->to(base_url("selecionar-instituicao"));
+				}
 			
-				return redirect()->to(base_url());
+				
 				
 			}
 			else{

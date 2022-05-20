@@ -103,44 +103,22 @@ $routes->get('usuario-instituicao/(:segment)',    	  	'UsuarioInstituicaoControl
 $routes->post('usuario-instituicao/update/(:segment)', 	'UsuarioInstituicaoController::update/$1');
 $routes->get('usuario-instituicao/delete/(:segment)', 	'UsuarioInstituicaoController::delete/$1');
 
-//Ocorrencia
-$routes->get('ocorrencia/new',                	'OcorrenciaController::new');
-$routes->post('ocorrencia',                   	'OcorrenciaController::create');
-$routes->get('ocorrencia',                    	'OcorrenciaController::index');
-$routes->get('ocorrencia/(:segment)',    	  	'OcorrenciaController::edit/$1');
-$routes->post('ocorrencia/update/(:segment)', 	'OcorrenciaController::update/$1');
-$routes->get('ocorrencia/delete/(:segment)', 	'OcorrenciaController::delete/$1');
+//Mebresia
+$routes->get('membro/new',                	'MembroController::new');
+$routes->post('membro',                   	'MembroController::create');
+$routes->get('membro',                    	'MembroController::index');
+$routes->get('membro/(:segment)',    	  	'MembroController::edit/$1');
+$routes->post('membro/update/(:segment)', 	'MembroController::update/$1');
+$routes->get('membro/delete/(:segment)', 	'MembroController::delete/$1');
 
-//Rota
-$routes->get('rotas/new',                	'RotaController::new');
-$routes->post('rotas',                   	'RotaController::create');
-$routes->get('rotas',                    	'RotaController::index');
-$routes->get('rotas/(:segment)',    	  	'RotaController::edit/$1');
-$routes->post('rotas/update/(:segment)', 	'RotaController::update/$1');
-$routes->get('rotas/delete/(:segment)', 	'RotaController::delete/$1');
+//Historico Membro
+$routes->get('membro-historico/new',                	'MembroHistoricoController::new');
+$routes->post('membro-historico',                   	'MembroHistoricoController::create');
+$routes->get('membro-historico',                    	'MembroHistoricoController::index');
+$routes->get('membro-historico/(:segment)',    	  	'MembroHistoricoController::edit/$1');
+$routes->post('membro-historico/update/(:segment)', 	'MembroHistoricoController::update/$1');
+$routes->get('membro-historico/delete/(:segment)', 	'MembroHistoricoController::delete/$1');
 
-//Registro de pontos
-$routes->get('registro/new',                	'RegistroController::new');
-$routes->post('registro',                   	'RegistroController::create');
-$routes->get('registro',                    	'RegistroController::index');
-$routes->get('registro/(:segment)',    	  	'RegistroController::edit/$1');
-$routes->post('registro/update/(:segment)', 	'RegistroController::update/$1');
-$routes->get('registro/delete/(:segment)', 	'RegistroController::delete/$1');
-
-
-//Gerar compromissos de envio
-$routes->get('gerar-compromisso-documento',                	'GerarCompromissoDocumentoController::index');
-$routes->post('gerar-compromisso-documento',                'GerarCompromissoDocumentoController::gerarComprimisso');
-
-//Gerenciar documentos
-//Promotor
-$routes->get('gerenciar-documentos',                	'GerenciarDocumentosController::index');
-$routes->get('gerenciar-documentos/(:segment)',    	  	'GerenciarDocumentosController::edit/$1');
-$routes->post('gerenciar-documentos/update/(:segment)', 	'GerenciarDocumentosController::update/$1');
-
-
-$routes->get('consultar-registros-de-acesso',                	'ConsultaRegistroAcessoController::index');
-$routes->get('relacao-geral',                	'ConsultaRegistroAcessoController::index');
 
 
 

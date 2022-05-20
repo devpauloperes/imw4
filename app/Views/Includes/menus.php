@@ -33,7 +33,7 @@
 
 
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Pastores</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Membros</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Membros</a></li>
 
         </ul>
     </li>

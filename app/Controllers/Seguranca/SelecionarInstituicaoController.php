@@ -4,6 +4,7 @@ namespace App\Controllers\Seguranca;
 
 use App\Controllers\BaseController;
 use App\Models\InstituicaoModel;
+use App\Models\UsuarioInstituicaoModel;
 use DateTime;
 use Exception;
 
@@ -19,8 +20,11 @@ class SelecionarInstituicaoController extends BaseController
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
 
-        $model = new InstituicaoModel();
-        $data['registros'] = $model->select("Instituicao.*, TipoInstituicao.nome tipoInstituicaoNome")->join("TipoInstituicao", "TipoInstituicao.id = Instituicao.tipoInstituicaoId")->orderBy('nome', 'ASC');
+        $model = new UsuarioInstituicaoModel();
+        $data['registros'] = $model ->select("Instituicao.*")
+                                    ->join("Instituicao", "Instituicao.id = Usuario_Instituicao.instituicaoId")
+                                    ->where("Usuario_Instituicao.usuarioId", $this->usuario["id"] )
+                                    ->orderBy('Instituicao.nome', 'ASC');
 
         //caso seja necessário pesquisar por nome
         if ($this->request->getGet("nome"))
@@ -77,38 +81,29 @@ class SelecionarInstituicaoController extends BaseController
     {
         helper(['form', 'url']);
 
-        $model = new InstituicaoModel();
-        $data = $this->getDados();
-        $data["created_by"] = $this->usuario["id"];
-
-        try {
-            if ($model->insert($data)) {
-                return redirect()->to(base_url( $this->route . "?msg=Cadastro realizado com Sucesso!"));
-            } else {
-                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao salvar."));
-            }
-            
-        } catch (Exception $ex) {
-            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
-        }
+        return "Not implemented";
         
     }
 
 
     public function edit($id = null)
     {
-        return "";
+        $model = new InstituicaoModel();
+        $instituicao = $model->find($id);
+        $session =  \Config\Services::session(); 
+        $session->set("Instituicao", $instituicao);
+        return redirect()->to(base_url());        
     }
 
     public function update($id = null)
     {
-        return "";
+        return "Not implemented";
         
     }
 
 
     public function delete($id = null)
     {
-        return "";  
+        return "Not implemented";
     }
 }
