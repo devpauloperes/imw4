@@ -14,10 +14,10 @@
 	<!-- ===============================================-->
 	<!--    Favicons-->
 	<!-- ===============================================-->
-	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
 	<!-- <link rel="manifest" href="<?php echo base_url(); ?>/public/assets/img/favicons/manifest.json"> -->
 	<meta name="msapplication-TileImage" content="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
 
@@ -36,8 +36,8 @@
 		}
 	</style>
 
-	
-	
+
+
 
 </head>
 
@@ -61,14 +61,14 @@
 					<i class="align-middle me-2 fas fa-fw fa-user-circle" style="font-size: 60px;"></i>
 					<div class="fw-bold"><?php echo $_SESSION["UsuarioLogado"]["nome"]; ?></div>
 					<small> <?php echo $_SESSION["UsuarioLogado"]["email"]; ?></small><br />
-					<?php if (isset($_SESSION["Instituicao"])) :?>
-					<small> <b>INSTITUIÇÃO</b> <br> <?php echo $_SESSION["Instituicao"]["nome"]; ?></small>
+					<?php if (isset($_SESSION["Instituicao"])) : ?>
+						<small> <b>INSTITUIÇÃO</b> <br> <?php echo $_SESSION["Instituicao"]["nome"]; ?></small>
 					<?php endif; ?>
 				</div>
-				<?php if (isset($_SESSION["Instituicao"])) :?>
-				 <?php echo $this->include("Includes/menus"); ?> 
+				<?php if (isset($_SESSION["Instituicao"])) : ?>
+					<?php echo $this->include("Includes/menus"); ?>
 				<?php endif; ?>
-				
+
 			</div>
 		</nav>
 		<div class="main">
@@ -81,7 +81,7 @@
 					<input class="form-control form-control-lite" name="nome" type="text" placeholder="Pesquisar no sistema">
 				</form> -->
 				<div class="col-6 breadcrumb-item">
-				
+
 					<a href="<?php echo base_url(); ?>/selecionar-instituicao" style="margin-left: 10px"> <i class="fas fa-fw fa-church"></i> Trocar de Instituição </a>
 				</div>
 				<div class="navbar-collapse collapse">
@@ -254,9 +254,9 @@
 		</defs>
 	</svg>
 
-	
-	
-	
+
+
+
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -331,7 +331,7 @@
 			$('.selectonfocus').mask("00/00/0000", {
 				selectOnFocus: true
 			});
-			
+
 		});
 	</script>
 	<?= $this->renderSection('script') ?>

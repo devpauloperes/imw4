@@ -15,10 +15,10 @@
   <!--    Favicons-->
   <!-- ===============================================-->
   <!-- -->
-  <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
-  <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>/public/assets/img/illustrations/favicon.ico">
   <link rel="manifest" href="<?php echo base_url(); ?>/public/assets/img/favicons/manifest.json">
   <meta name="msapplication-TileImage" content="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
 
