@@ -61,13 +61,8 @@
 
       <div class="card mt-5">
         <div class="card-body">
-          <div class="m-sm-4">
-
-
+          
             <?= $this->renderSection('conteudo') ?>
-
-
-          </div>
 
         </div>
       </div>

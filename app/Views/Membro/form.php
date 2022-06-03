@@ -5,61 +5,99 @@
     <div class="card-body">
         <div class="row">
 
-            <input type="hidden" name="pessoaId" id="pessoaId" value="<?php echo (isset($entidade)) ? $entidade["pessoaId"] : ""; ?>" />
+            <div class="col-9">
 
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="nome">Nome*</label>
-                <input class="form-control " id="nome" name="nome" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nome"] : ""; ?>" type="text" placeholder="" required="required">
+                <div class="row">
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="tipoPessoa">Tipo de Pessoa*</label>
+                        <select class="form-control select2" data-bs-toggle="select2" width="fit" onchange="viewTipoPessoa(this.value);" name="tipoPessoa" id="tipoPessoa" required="required">
+                            <option value="" disabled selected>Selecione</option>
+                            <?php foreach ($TipoPessoa as $item) : ?>
+                                <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["tipoPessoa"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="pessoaId" id="pessoaId" value="<?php echo (isset($entidade)) ? $entidade["pessoaId"] : ""; ?>" />
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="nome">Nome*</label>
+                        <input class="form-control " id="nome" name="nome" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nome"] : ""; ?>" type="text" placeholder="" required="required">
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="email">E-mail</label>
+                        <input class="form-control " id="email" name="email" maxlength="100" value="<?php echo (isset($entidade)) ? $entidade["email"] : ""; ?>" type="text" placeholder="">
+                    </div>
+
+                    <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
+                        <label for="dataNascimento">Data de Nascimento*</label>
+                        <input class="form-control date" id="dataNascimento" name="dataNascimento" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataNascimento"] : ""; ?>" type="text" placeholder="" required>
+                    </div>
+
+                    <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                        <label for="cpf">CPF*</label>
+                        <input class="form-control cpf" id="cpf" name="cpf" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["cpf"] : ""; ?>" type="text" placeholder="" required="required">
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="estadoCivil">Estado Civil*</label>
+                        <select class="form-control select2" data-bs-toggle="select2" width="fit" onchange="viewEstadoCivil(this.value);" name="estadoCivil" id="estadoCivil" required="required">
+                            <option value="" disabled selected>Selecione</option>
+                            <?php foreach ($EstadoCivil as $item) : ?>
+                                <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["estadoCivil"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12 divNomeConjuge">
+                        <label for="nomeConjuge">Nome Conjuge</label>
+                        <input class="form-control " id="nomeConjuge" name="nomeConjuge" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomeConjuge"] : ""; ?>" type="text" placeholder="">
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="nomePai">Nome do Pai</label>
+                        <input class="form-control " id="nomePai" name="nomePai" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomePai"] : ""; ?>" type="text" placeholder="">
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="nomeMae">Nome da Mãe</label>
+                        <input class="form-control " id="nomeMae" name="nomeMae" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomeMae"] : ""; ?>" type="text" placeholder="">
+                    </div>
+
+                    <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                        <label for="foto">Foto</label>
+                        <input class="form-control form-control-file" name="foto" id="foto" type="file" accept="image/gif, image/jpeg, image/png">
+                    </div>
+
+
+                    <div class="mb-3 col-lg-12 col-md-12 col-sm-12">
+                        <label for="filhos">Filhos <br> <small>Atenção: Insira um filho por linha do campo abaixo</small></label>
+                        <textarea class="form-control " name="filhos" id="filhos" rows="5"><?php echo (isset($entidade)) ? $entidade["filhos"] : ""; ?></textarea>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="email">E-mail</label>
-                <input class="form-control " id="email" name="email" maxlength="100" value="<?php echo (isset($entidade)) ? $entidade["email"] : ""; ?>" type="text" placeholder="">
+            <div class="col-3">
+                <div class="text-center">
+                    <?php if (isset($entidade) && ($entidade["foto"]) != "") : ?>
+                        <a href="<?php echo base_url(); ?>/public/uploads/Pessoa/<?php echo $entidade["foto"]; ?>" target="_blank">
+                            <img src="<?php echo base_url(); ?>/public/uploads/Pessoa/<?php echo $entidade["foto"]; ?>" class="rounded-circle img-responsive mt-2" width="180" height="180">
+                        </a>
+                    <?php else : ?>
+                        <i class="align-middle me-2 fas fa-fw fa-user-circle" style="font-size: 180px;"></i>
+                    <?php endif; ?>
+
+                </div>
             </div>
 
-            <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
-                <label for="dataNascimento">Data de Nascimento*</label>
-                <input class="form-control date" id="dataNascimento" name="dataNascimento" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataNascimento"] : ""; ?>" type="text" placeholder="" required>
-            </div>
-
-            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
-                <label for="cpf">CPF*</label>
-                <input class="form-control cpf" id="cpf" name="cpf" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["cpf"] : ""; ?>" type="text" placeholder="" required="required">
-            </div>
-
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="estadoCivil">Estado Civil*</label>
-                <select class="form-control select2" data-bs-toggle="select2" width="fit" name="estadoCivil" id="estadoCivil" required="required">
-                    <option value="" disabled selected>Selecione</option>
-                    <?php foreach ($EstadoCivil as $item) : ?>
-                        <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["estadoCivil"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="nomeConjuge">Nome Conjuge</label>
-                <input class="form-control " id="nomeConjuge" name="nomeConjuge" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomeConjuge"] : ""; ?>" type="text" placeholder="">
-            </div>
-
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="nomePai">Nome do Pai</label>
-                <input class="form-control " id="nomePai" name="nomePai" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomePai"] : ""; ?>" type="text" placeholder="">
-            </div>
-
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="nomeMae">Nome da Mãe</label>
-                <input class="form-control " id="nomeMae" name="nomeMae" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomeMae"] : ""; ?>" type="text" placeholder="">
-            </div>            
-
-
-            <div class="mb-3 col-lg-12 col-md-12 col-sm-12">
-                <label for="filhos">Filhos <br> <small>Atenção: Insira um filho por linha do campo abaixo</small></label>
-                <textarea class="form-control " name="filhos" id="filhos" rows="5"><?php echo (isset($entidade)) ? $entidade["filhos"] : ""; ?></textarea>
-            </div>
 
 
         </div>
+
+
     </div>
 </div>
 
@@ -142,7 +180,7 @@
 
                 <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
                     <label for="pais">Pais</label>
-                    <input class="form-control" id="pais" name="pais" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["pais"] : ""; ?>" type="text" placeholder="">
+                    <input class="form-control" id="pais" name="pais" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["pais"] : "Brasil"; ?>" type="text" placeholder="" required>
                 </div>
 
                 <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
@@ -165,7 +203,7 @@
 
 
 
-<div class="card mb-3">
+<div class="card mb-3 cardMembro">
     <div class="card-header">
         <h5 class="mb-0">Dados do Membro</h5>
     </div>
@@ -188,7 +226,7 @@
                 <input class="form-control date" id="dataBatismo" name="dataBatismo" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataBatismo"] : ""; ?>" type="text" placeholder="" required>
             </div>
 
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-12">
                 <label for="profissao">Profissão</label>
                 <input class="form-control " id="profissao" name="profissao" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["profissao"] : ""; ?>" type="text" placeholder="">
             </div>
@@ -251,4 +289,23 @@
 
 
     });
+
+    viewEstadoCivil(jQuery("#estadoCivil").val());
+    viewTipoPessoa(vTipo)(jQuery("#tipoPessoa").val());
+
+    function viewEstadoCivil(vEstadoCivil) {
+        if (vEstadoCivil == 2) { //2 = casado
+            jQuery(".divNomeConjuge").show();
+        } else {
+            jQuery(".divNomeConjuge").hide();
+        }
+    }
+
+    function viewTipoPessoa(vTipo) {
+        if (vTipo == 1) { //1 = membro
+            jQuery(".cardMembro").show();
+        } else {
+            jQuery(".cardMembro").hide();
+        }
+    }
 </script>

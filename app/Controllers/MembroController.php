@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\MembroCapacitacaoModel;
 use App\Models\MembroHistoricoModel;
 use App\Models\MembroModel;
 use App\Models\PessoaModel;
@@ -57,8 +58,12 @@ class MembroController extends BaseController
             ["id" => 1, "nome" => "Ativo"],
             ["id" => 2, "nome" => "Disciplinado"],
             ["id" => 3, "nome" => "Desligado"],
-            ["id" => 4, "nome" => "Transferido"],
-            ["id" => 5, "nome" => "Excluído"],
+            ["id" => 4, "nome" => "Excluído"],
+        ];
+
+        $data["TipoPessoa"] = [
+            ["id" => 1, "nome" => "Membro"],
+            ["id" => 2, "nome" => "Congregado"],
         ];
 
 
@@ -74,8 +79,6 @@ class MembroController extends BaseController
             $dataAdmisao = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataNascimento'));
             $data["dataNascimento"] = date_format($dataAdmisao, "Y-m-d");
         }
-
-
 
         $data["cpf"] = preg_replace('/[^0-9]/', '', $this->request->getPost("cpf"));
         $data["email"] = $this->request->getPost("email");
@@ -97,6 +100,14 @@ class MembroController extends BaseController
         $data["telefone"] = $this->request->getPost("telefone");
         $data["celular"] = $this->request->getPost("celular");
         $data["filhos"] = $this->request->getPost("filhos");
+        $data["tipoPessoa"] = $this->request->getPost("tipoPessoa");
+
+        $img = $this->request->getFile('foto');
+        if ($img->isValid() && !$img->hasMoved()) {
+            $newName = $img->getRandomName();
+            $img->move(FCPATH . 'public/uploads/Pessoa/', $newName);
+            $data["foto"] = $newName;
+        }
 
 
         // $data["isAtivo"] = ($this->request->getPost("isAtivo") != null) ? 1 : 0;
@@ -104,6 +115,8 @@ class MembroController extends BaseController
         //     $dataInativo = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataInativo'));
         //     $data["dataInativo"] = date_format($dataInativo, "Y-m-d");
         // }
+
+
 
         return $data;
     }
@@ -118,10 +131,10 @@ class MembroController extends BaseController
             $dataBatismo = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataBatismo'));
             $data["dataBatismo"] = date_format($dataBatismo, "Y-m-d");
         }
-        
+
         $data["profissao"] = $this->request->getPost("profissao");
         $data["situacao"] = $this->request->getPost("situacao");
-        
+
         $data["instituicaoId"] = $this->instituicao["id"];
 
         return $data;
@@ -143,11 +156,15 @@ class MembroController extends BaseController
         try {
             $idPessoa = $pessoaModel->insert($dataPessoa);
 
-            $dataMembro["pessoaId"] = $idPessoa;
-            $idMembro = $model->insert($dataMembro);
+            $idMembro = null; 
+
+            if ($dataPessoa["tipoPessoa"] == 1) {
+                $dataMembro["pessoaId"] = $idPessoa;
+                $idMembro = $model->insert($dataMembro);
+            }
 
             if ($idMembro != null) {
-                return redirect()->to(base_url($this->route . "/". $idMembro  ."?msg=Cadastro realizado com Sucesso!"));
+                return redirect()->to(base_url($this->route . "/" . $idMembro  . "?msg=Cadastro realizado com Sucesso!"));
             } else {
                 return redirect()->to(base_url($this->route . "?erro=Houve uma falha ao salvar."));
             }
@@ -182,18 +199,25 @@ class MembroController extends BaseController
             ["id" => 1, "nome" => "Ativo"],
             ["id" => 2, "nome" => "Disciplinado"],
             ["id" => 3, "nome" => "Desligado"],
-            ["id" => 4, "nome" => "Transferido"],
-            ["id" => 5, "nome" => "Excluído"],
+            ["id" => 4, "nome" => "Excluído"],
+        ];
+
+        $data["TipoPessoa"] = [
+            ["id" => 1, "nome" => "Membro"],
+            ["id" => 2, "nome" => "Congregado"],
         ];
 
         //historico
         $historicoModel = new MembroHistoricoModel();
         $data["MembroHistorico"] = $historicoModel
-                                                ->select("MembroHistorico.*, Instituicao.nome instituicaoNome")
-                                                ->join("Instituicao", "Instituicao.id = MembroHistorico.membroId")
-                                                ->where("MembroHistorico.membroId", $id)->findAll();
+            ->select("MembroHistorico.*, origem.nome origemNome, destino.nome destinoNome")
+            ->join("Instituicao origem", "origem.id = MembroHistorico.instituicaoOrigemId")
+            ->join("Instituicao destino", "destino.id = MembroHistorico.instituicaoDestinoId")
+            ->where("MembroHistorico.membroId", $id)->findAll();
 
-        
+        //Capacitacao
+        $capacitacaoModel = new MembroCapacitacaoModel();
+        $data["MembroCapacitacao"] = $capacitacaoModel->where("membroId", $id)->orderBy("dataCapacitacao")->findAll();
 
         return view($this->dirView . '/edit', $data);
     }
@@ -226,7 +250,7 @@ class MembroController extends BaseController
 
     public function delete($id = null)
     {
-        
+
         $membroModel = new MembroModel();
         $dataMembro = $membroModel->find($id);
         $dataMembro["situacao"] = 5;
@@ -251,8 +275,8 @@ class MembroController extends BaseController
         } catch (Exception $ex) {
             return redirect()->to(base_url($this->route . "?erro=" . $ex->getMessage()));
         }
-        
-        
+
+
         $model = new MembroModel();
 
         try {

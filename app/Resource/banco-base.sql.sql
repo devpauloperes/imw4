@@ -168,7 +168,9 @@ CREATE TABLE IF NOT EXISTS MembroHistorico (
   
   membroId int not null,
   dataMovimentacao datetime not null,
-  instituicaoId int,
+  
+  instituicaoOrigemId int,
+  instituicaoDestinoId int,
   descricao text not null,
 
   created_at datetime NOT NULL,
@@ -198,3 +200,5 @@ CREATE TABLE IF NOT EXISTS MembroCapacitacao (
 
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
+
+ALTER TABLE `Pessoa` ADD `tipoPessoa` INT NOT NULL AFTER `id`;

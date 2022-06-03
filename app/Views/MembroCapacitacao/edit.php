@@ -11,12 +11,11 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">In&iacute;cio</a></li>
                 <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>/<?php echo $route; ?>">Listagem</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Novo Registro</li>
+                <li class="breadcrumb-item active" aria-current="page">Edição</li>
             </ol>
         </nav>
     </div>
 </div>
-
 
 <div class="card mb-3">
     <div class="bg-holder d-none d-lg-block bg-card gb-title">
@@ -24,27 +23,35 @@
     <!--/.bg-holder-->
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <?= $this->include('Includes/mensagens') ?>
 
-                <p class="mt-2">Inserir novo registro</p>
+                <p class="mt-2">Altera&ccedil;&atilde;o de registro</p>
 
             </div>
         </div>
     </div>
 </div>
 
-<form method="POST" action="./" enctype="multipart/form-data">
-    <?= $this->include($dirView . '/form') ?>
-    <?= $this->include('Includes/botao_salvar') ?>            
-</form>
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="mb-0">Formul&aacute;rio de Altera&ccedil;&atilde;o</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" action="update/<?php echo $entidade["id"]; ?>">
 
-<?= $this->endSection() ?>
+                    <?= $this->include($dirView . '/form') ?>
 
+                    <?= $this->include('Includes/botoes_alterar_apagar') ?>
 
+                </form>
+            </div>
 
-<?= $this->section('script') ?>
+        </div>
+    </div>
+</div>
 
-//script js
 
 <?= $this->endSection() ?>

@@ -233,7 +233,7 @@
 						<div class="col-8 text-start">
 							<!-- caso queira colocar um texto informativo de rodape -->
 						</div>
-						<div class="col-4 text-end">
+						<div class="col-lg-4 col-sm-12 text-end">
 							<p class="mb-0">
 								&copy; 2022 - <a href="https://www.ducortech.com.br" target="_blank" class="text-muted">Tecnologia Ducotech</a>
 							</p>

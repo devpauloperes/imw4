@@ -13,6 +13,7 @@
 
             <div class="text-center mt-3">
                 <button class="btn btn-lg btn-primary btn-block mt-3" type="submit" name="submit">Recuperar Senha</button>
+                <a href="./" class="btn btn-lg btn-danger mt-3">Voltar</a>
             </div>
         </form>
     

@@ -39,29 +39,30 @@
     </div>
 
 </div>
-<form method="POST" action="update/<?php echo $entidade["id"]; ?>">
+<form method="POST" action="update/<?php echo $entidade["id"]; ?>" enctype="multipart/form-data">
 
     <?= $this->include($dirView . '/form') ?>
 
     <?= $this->include('Includes/botoes_alterar_apagar') ?>
 
 
-    <div class="card mb-3">
+    <div class="card mb-3 cardMembro">
         <div class="card-header">
-            <h5 class="mb-0">Histórico do Membro</h5>
+            <h5 class="mb-0" id="historicos">Histórico</h5>
         </div>
 
         <div class="card-body">
             <div class="row">
 
                 <div class="col-12">
-                    <a href="<?php echo base_url(); ?>/membro-historico/new?membroId=<?php echo $entidade["id"] ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo </a>
+                    <a href="<?php echo base_url(); ?>/membro-historico/new?membroId=<?php echo $entidade["id"] ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo Histórico </a>
                     <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
                         <thead class="thead-light">
                             <tr>
 
                                 <th>Data</th>
-                                <th>Instituicao</th>
+                                <th>Instituição de Origem</th>
+                                <th>Instituição de Destino</th>
                                 <th>Descrição da Mudança</th>
                                 
 
@@ -73,13 +74,66 @@
 
                                 <tr>
 
-                                    <td><?php echo $registro["dataMovimentacao"]; ?></td>
-                                    <td><?php echo $registro["instituicaoNome"]; ?></td>
+                                    <td><?php echo date("d/m/Y", strtotime($registro["dataMovimentacao"])); ?></td>
+                                    <td><?php echo $registro["origemNome"]; ?></td>
+                                    <td><?php echo $registro["destinoNome"]; ?></td>
                                     <td><?php echo $registro["descricao"]; ?></td>
 
                                     <td class="table-action">
                                         <a href="<?php echo base_url(); ?>/membro-historico/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
                                         <a href="#<?php echo $registro["id"]; ?>" onclick="remover('membro-historico/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+
+                
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card mb-3 cardMembro">
+        <div class="card-header">
+            <h5 class="mb-0" id="capacitacoes">Capacitações</h5>
+            
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-12">
+                    <a href="<?php echo base_url(); ?>/membro-capacitacao/new?membroId=<?php echo $entidade["id"] ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Nova Capacitação </a>
+                    <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
+                        <thead class="thead-light">
+                            <tr>
+
+                                <th>Nome da Capacitação</th>
+                                <th>Data </th>
+                                <th>Carga Horária</th>
+                                
+
+                                <th width="150"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($MembroCapacitacao as $registro) : ?>
+
+                                <tr>
+
+                                    <td><?php echo $registro["nome"]; ?></td>
+                                    <td><?php echo date("d/m/Y", strtotime($registro["dataCapacitacao"])) ; ?></td>
+                                    <td><?php echo $registro["cargaHoraria"]; ?></td>
+
+                                    <td class="table-action">
+                                        <a href="<?php echo base_url(); ?>/membro-capacitacao/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                        <a href="#<?php echo $registro["id"]; ?>" onclick="remover('membro-capacitacao/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
 

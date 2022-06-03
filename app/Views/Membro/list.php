@@ -78,7 +78,7 @@
 
                             <tr>
 
-                                <td><?php echo $registro["numeroRolPermanente"]; ?></td>
+                                <td><?php //echo $registro["numeroRolPermanente"]; ?></td>
                                 <td><?php echo $registro["nome"]; ?></td>
                                 <td>Não temos esse campo</td>
                                 <td>Não temos esse campo</td>

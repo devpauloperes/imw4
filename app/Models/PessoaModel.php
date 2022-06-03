@@ -15,7 +15,7 @@ class PessoaModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nome', 'dataNascimento', 'email', 'cpf', 'foto', 'estadoCivil', 'nomeConjuge', 'nomePai', 'nomeMae', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 'telefone', 'celular', 'filhos', 'isAtivo', 'dataInativo'
+        'tipoPessoa', 'nome', 'dataNascimento', 'email', 'cpf', 'foto', 'estadoCivil', 'nomeConjuge', 'nomePai', 'nomeMae', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 'telefone', 'celular', 'filhos', 'isAtivo', 'dataInativo'
         , 'created_by', 'updated_by'
     ];
 

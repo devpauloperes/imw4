@@ -15,7 +15,7 @@ class MembroHistoricoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'membroId', 'dataMovimentacao', 'instituicaoId', 'descricao'
+        'membroId', 'tipoHistorico', 'dataMovimentacao', 'instituicaoOrigemId', 'instituicaoDestinoId', 'descricao'
         , 'created_by', 'updated_by'
     ];
 

@@ -2,13 +2,9 @@
 
 <?= $this->section('conteudo') ?>
 
-
-
 <h1 class="h2 text-center">
     <?php echo $titlePage; ?>
 </h1>
-
-
 
 <div class="card mb-3">
 
@@ -17,7 +13,7 @@
 
             <div class="col-12 ">
                 
-                <table class="table table-striped mb-3" style="margin-top: 15px; width: 70%; margin: 0 auto;">
+                <table class="table table-striped mb-3" >
                     <thead class="thead-light">
                         <tr>
 

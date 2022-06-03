@@ -119,6 +119,14 @@ $routes->get('membro-historico/(:segment)',    	  	'MembroHistoricoController::e
 $routes->post('membro-historico/update/(:segment)', 	'MembroHistoricoController::update/$1');
 $routes->get('membro-historico/delete/(:segment)', 	'MembroHistoricoController::delete/$1');
 
+//Capacitacao do Membro
+$routes->get('membro-capacitacao/new',                	'MembroCapacitacaoController::new');
+$routes->post('membro-capacitacao',                   	'MembroCapacitacaoController::create');
+$routes->get('membro-capacitacao',                    	'MembroCapacitacaoController::index');
+$routes->get('membro-capacitacao/(:segment)',    	  	'MembroCapacitacaoController::edit/$1');
+$routes->post('membro-capacitacao/update/(:segment)', 	'MembroCapacitacaoController::update/$1');
+$routes->get('membro-capacitacao/delete/(:segment)', 	'MembroCapacitacaoController::delete/$1');
+
 
 
 

@@ -4,17 +4,16 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\InstituicaoModel;
-use App\Models\MembroHistoricoModel;
+use App\Models\MembroCapacitacaoModel;
 use DateTime;
 use Exception;
 
-class MembroHistoricoController extends BaseController
+class MembroCapacitacaoController extends BaseController
 {
 
-    private $route = 'membro-historico';
-    private $titlePage = 'Histórico do Membro';
-    private $dirView = 'MembroHistorico';
-    
+    private $route = 'membro-capacitacao';
+    private $titlePage = 'Capacitação do Membro';
+    private $dirView = 'MembroCapacitacao';
 
     public function index()
     {
@@ -29,15 +28,6 @@ class MembroHistoricoController extends BaseController
 
         $instituicaoModel = new InstituicaoModel();
         $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
-
-        $data["TipoHistorico"] = [
-            ["id" => 1, "nome" => "Transferência"],
-            ["id" => 2, "nome" => "Recebido por batismo"],
-            ["id" => 3, "nome" => "Recebido por Adesão"],           
-            ["id" => 4, "nome" => "Recebido por Reconciliação"],           
-            ["id" => 5, "nome" => "Excluído"],
-        ];
-
         
         return view( $this->dirView. '/new', $data);
     }
@@ -47,13 +37,13 @@ class MembroHistoricoController extends BaseController
 
         $data["membroId"] = $this->request->getPost("membroId");
         
-        if ($this->request->getPost('dataMovimentacao') != "") {
-            $dataMovimentacao = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataMovimentacao'));
-            $data["dataMovimentacao"] = date_format($dataMovimentacao, "Y-m-d");
+        if ($this->request->getPost('dataCapacitacao') != "") {
+            $dataCapacitacao = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataCapacitacao'));
+            $data["dataCapacitacao"] = date_format($dataCapacitacao, "Y-m-d");
         }
-        $data["instituicaoOrigemId"] = $this->request->getPost("instituicaoOrigemId");
-        $data["instituicaoDestinoId"] = $this->request->getPost("instituicaoDestinoId");
-        $data["descricao"] = $this->request->getPost("descricao");
+        $data["nome"] = $this->request->getPost("nome");
+        $data["cargaHoraria"] = $this->request->getPost("cargaHoraria");
+        
 
         return $data;
     }
@@ -62,13 +52,13 @@ class MembroHistoricoController extends BaseController
     {
         helper(['form', 'url']);
 
-        $model = new MembroHistoricoModel();
+        $model = new MembroCapacitacaoModel();
         $data = $this->getDados();
         $data["created_by"] = $this->usuario["id"];
 
         try {
             if ($model->insert($data)) {
-                return redirect()->to(base_url( "membro/". $data["membroId"] ."?msg=Cadastro realizado com Sucesso!#historicos"));
+                return redirect()->to(base_url( "membro/". $data["membroId"] ."?msg=Cadastro realizado com Sucesso!#capacitacoes"));
             } else {
                 return redirect()->to(base_url("membro/". $data["membroId"] ."?erro=Houve uma falha ao salvar."));
             }
@@ -89,33 +79,25 @@ class MembroHistoricoController extends BaseController
 
         
 
-        $model = new MembroHistoricoModel();
+        $model = new MembroCapacitacaoModel();
         $data['entidade'] = $model->where('id', $id)->first();
 
         $instituicaoModel = new InstituicaoModel();
         $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
-
-        $data["TipoHistorico"] = [
-            ["id" => 1, "nome" => "Transferência"],
-            ["id" => 2, "nome" => "Recebido por batismo"],
-            ["id" => 3, "nome" => "Recebido por Adesão"],           
-            ["id" => 4, "nome" => "Recebido por Reconciliação"],           
-            ["id" => 5, "nome" => "Excluído"],
-        ];
 
         return view( $this->dirView. '/edit', $data);
     }
 
     public function update($id = null)
     {
-        $model = new MembroHistoricoModel();
+        $model = new MembroCapacitacaoModel();
         $data = $this->getDados(); 
         $data["updated_by"] = $this->usuario["id"];       
 
         try {
 
             if ($model->update($id, $data)) {
-                return redirect()->to(base_url("membro/". $data["membroId"] ."?msg=Cadastro alterado com Sucesso!#historicos"));
+                return redirect()->to(base_url("membro/". $data["membroId"] ."?msg=Cadastro alterado com Sucesso!#capacitacoes"));
             } else {
                 return redirect()->to(base_url( "membro/". $data["membroId"] ."?erro=Houve uma falha ao alterar."));
             }
@@ -130,13 +112,13 @@ class MembroHistoricoController extends BaseController
 
     public function delete($id = null)
     {
-        $model = new MembroHistoricoModel(); 
+        $model = new MembroCapacitacaoModel(); 
         $data = $model->find($id);       
 
         try {
             
             if ($model->delete($id)) {
-                return redirect()->to(base_url("membro/". $data["membroId"] ."?msg=Cadastro removido com Sucesso!#historicos"));
+                return redirect()->to(base_url("membro/". $data["membroId"] ."?msg=Cadastro removido com Sucesso!#capacitacoes"));
             } else {
                 return redirect()->to(base_url( "membro/". $data["membroId"] ."?erro=Houve uma falha ao remover."));
             }
