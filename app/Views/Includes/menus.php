@@ -34,6 +34,11 @@
 
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Pastores</a></li>
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Membros</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/congregados">Congregados</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro-em-transferencia">Membros em Transferência</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro-recepcionar">Receber Membros</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/rol-permanente">Rol Permanente</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/rol-atual">Rol Atual</a></li>
 
         </ul>
     </li>

@@ -15,7 +15,8 @@ class MembroModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'pessoaId', 'numeroRolPermanente', 'anoConversao', 'dataBatismo', 'profissao', 'situacao', 'instituicaoId'
+        'pessoaId', 'numeroRolPermanente', 'anoConversao', 'dataBatismo', 'dataRecepcao', 'situacao', 'instituicaoId', 'dataSaida'
+        , 'motivoExclusaoId', 'instituicaoTransferenciaId', 'dataRecepcao'
         , 'created_by', 'updated_by'
     ];
 

@@ -28,14 +28,23 @@ class MembroHistoricoController extends BaseController
         $data["dirView"]      = $this->dirView;
 
         $instituicaoModel = new InstituicaoModel();
-        $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
+        $data["Instituicao"] = $instituicaoModel->where("tipoInstituicaoId", 8)->orderBy("nome")->findAll();
 
         $data["TipoHistorico"] = [
-            ["id" => 1, "nome" => "Transferência"],
+            ["id" => 1, "nome" => "Em Transferência"],
             ["id" => 2, "nome" => "Recebido por batismo"],
             ["id" => 3, "nome" => "Recebido por Adesão"],           
             ["id" => 4, "nome" => "Recebido por Reconciliação"],           
-            ["id" => 5, "nome" => "Excluído"],
+            ["id" => 5, "nome" => "Recebido por transferência"],           
+            ["id" => 6, "nome" => "Desligado"],
+        ];
+
+        $data["MotivoExclusao"] = [
+            ["id" => 1, "nome" => "I - A pedido"],
+            ["id" => 2, "nome" => "II - Abandono"],
+            ["id" => 3, "nome" => "III - Falecimento"],
+            ["id" => 4, "nome" => "IV - Justa Causa"],
+            ["id" => 5, "nome" => "V - Divórcio"],
         ];
 
         
@@ -47,13 +56,14 @@ class MembroHistoricoController extends BaseController
 
         $data["membroId"] = $this->request->getPost("membroId");
         
-        if ($this->request->getPost('dataMovimentacao') != "") {
-            $dataMovimentacao = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataMovimentacao'));
-            $data["dataMovimentacao"] = date_format($dataMovimentacao, "Y-m-d");
+        if ($this->request->getPost('dataHistorico') != "") {
+            $dataHistorico = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataHistorico'));
+            $data["dataHistorico"] = date_format($dataHistorico, "Y-m-d");
         }
         $data["instituicaoOrigemId"] = $this->request->getPost("instituicaoOrigemId");
         $data["instituicaoDestinoId"] = $this->request->getPost("instituicaoDestinoId");
         $data["descricao"] = $this->request->getPost("descricao");
+        $data["motivoExclusaoId"] = $this->request->getPost("motivoExclusaoId");
 
         return $data;
     }
@@ -100,7 +110,16 @@ class MembroHistoricoController extends BaseController
             ["id" => 2, "nome" => "Recebido por batismo"],
             ["id" => 3, "nome" => "Recebido por Adesão"],           
             ["id" => 4, "nome" => "Recebido por Reconciliação"],           
-            ["id" => 5, "nome" => "Excluído"],
+            ["id" => 5, "nome" => "Recebido por transferência"],           
+            ["id" => 6, "nome" => "Desligado"],
+        ];
+
+        $data["MotivoExclusao"] = [
+            ["id" => 1, "nome" => "I - A pedido"],
+            ["id" => 2, "nome" => "II - Abandono"],
+            ["id" => 3, "nome" => "III - Falecimento"],
+            ["id" => 4, "nome" => "IV - Justa Causa"],
+            ["id" => 5, "nome" => "V - Divórcio"],
         ];
 
         return view( $this->dirView. '/edit', $data);

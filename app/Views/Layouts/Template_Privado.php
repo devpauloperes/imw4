@@ -53,7 +53,7 @@
 		<nav id="sidebar" class="sidebar">
 			<div class="text-center">
 				<a class="sidebar-brand" href="<?php echo base_url(); ?>">
-					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-branca.png" width="190" />
+					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-branca-2.png" width="190" />
 				</a>
 			</div>
 			<div class="sidebar-content">

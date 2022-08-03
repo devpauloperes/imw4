@@ -26,6 +26,11 @@ class MembroCapacitacaoController extends BaseController
         $data["route"]      = $this->route;
         $data["dirView"]      = $this->dirView;
 
+        $data["Boleano"] = [
+            ["id" => 0,"nome" => "Não"],
+            ["id" => 1,"nome" => "Sim"],
+        ];
+
         $instituicaoModel = new InstituicaoModel();
         $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
         
@@ -43,6 +48,14 @@ class MembroCapacitacaoController extends BaseController
         }
         $data["nome"] = $this->request->getPost("nome");
         $data["cargaHoraria"] = $this->request->getPost("cargaHoraria");
+        $data["isIWE"] = $this->request->getPost("isIWE");
+
+        $img = $this->request->getFile('certificado');
+        if ($img->isValid() && !$img->hasMoved()) {
+            $newName = $img->getRandomName();
+            $img->move(FCPATH . 'public/uploads/Certificado/', $newName);
+            $data["certificado"] = $newName;
+        }
         
 
         return $data;
@@ -76,6 +89,11 @@ class MembroCapacitacaoController extends BaseController
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
         $data["dirView"]      = $this->dirView;
+
+        $data["Boleano"] = [
+            ["id" => 0,"nome" => "Não"],
+            ["id" => 1,"nome" => "Sim"],
+        ];
 
         
 

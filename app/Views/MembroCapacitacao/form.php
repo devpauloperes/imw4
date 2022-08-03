@@ -22,6 +22,21 @@
                 <input class="form-control " id="cargaHoraria" name="cargaHoraria" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["cargaHoraria"] : ""; ?>" type="number" placeholder="">
             </div>
 
+            <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                <label for="certificado">Certificao</label>
+                <input class="form-control form-control-file" name="certificado" id="certificado" type="file" > <!--accept="image/gif, image/jpeg, image/png" -->
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-12">
+                        <label for="isIWE">Feito no IWE?*</label>
+                        <select class="form-control select2" data-bs-toggle="select2" width="fit" name="isIWE" id="isIWE" required="required">
+                            <option value="" disabled selected>Selecione</option>
+                            <?php foreach ($Boleano as $item) : ?>
+                                <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["isIWE"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
         </div>
     </div>
 </div>

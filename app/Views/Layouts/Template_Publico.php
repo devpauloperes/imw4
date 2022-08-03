@@ -56,9 +56,9 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-1">
-							<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png" >
+							<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-2.png" >
 							<p class="lead mt-3">
-								Igreja Metodista Wesleyana, um lugar de esperança.
+								Igreja Metodista Wesleyana, lugar de esperança.
 							</p>
 						</div>
 

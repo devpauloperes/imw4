@@ -62,9 +62,8 @@
                     <thead class="thead-light">
                         <tr>
 
-                            <th>Rol</th>
+                            
                             <th>Nome</th>
-                            <th>Recepção</th>
                             <th>Telefone</th>
                             <th>Celular</th>
                             <th>Ativa</th>
@@ -77,15 +76,13 @@
 
                             <tr>
 
-                                <td><?php echo $registro["numeroRolPermanente"]; ?></td>
                                 <td><?php echo $registro["nome"]; ?></td>
-                                <td ><?php echo ($registro["dataRecepcao"] != null) ? date('d/m/Y', strtotime($registro["dataRecepcao"]))  : "-" ; ?></td>                                
                                 <td><?php echo $registro["telefone"]; ?></td>
                                 <td><?php echo $registro["celular"]; ?></td>
                                 <td><?php echo ($registro["isAtivo"] == 1) ? "Sim" : "Não"; ?></td>
                                 
                                 <td class="table-action">
-                                    <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                    <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>?tipo=congregado" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
                                     <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo $route; ?>/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>

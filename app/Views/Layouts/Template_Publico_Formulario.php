@@ -54,7 +54,7 @@
   <main>
 
     <div class="text-center mt-3">
-      <img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca.png">
+      <img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-2.png">
     </div>
 
     <div class="container">

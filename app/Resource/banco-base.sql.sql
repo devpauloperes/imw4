@@ -202,3 +202,58 @@ CREATE TABLE IF NOT EXISTS MembroCapacitacao (
 ) ENGINE=InnoDB;
 
 ALTER TABLE `Pessoa` ADD `tipoPessoa` INT NOT NULL AFTER `id`;
+
+
+
+DROP TABLE IF EXISTS IgrejaCargo;
+CREATE TABLE IF NOT EXISTS IgrejaCargo (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(100) NOT NULL,
+  mandato int not null,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS CargoNomeacao;
+CREATE TABLE IF NOT EXISTS CargoNomeacao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(100) NOT NULL,
+  mandato int not null,
+  tipoInstituicaoId int not null,
+  quemConcorre int,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS Nomeacao;
+CREATE TABLE IF NOT EXISTS Nomeacao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  instituicaoId int not null,
+  cargoNomeacaoId int not null,
+  nomeadoId int not null,
+  mandatoInicio int not null,
+  mandatoFim int not null,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+

@@ -33,7 +33,7 @@
 
                     <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
                         <label for="dataNascimento">Data de Nascimento*</label>
-                        <input class="form-control date" id="dataNascimento" name="dataNascimento" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataNascimento"] : ""; ?>" type="text" placeholder="" required>
+                        <input class="form-control date" id="dataNascimento" name="dataNascimento" maxlength="20" value="<?php echo (isset($entidade)) ? date('d/m/Y', strtotime($entidade["dataNascimento"]))  : ""; ?>" type="text" placeholder="" required>
                     </div>
 
                     <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
@@ -66,9 +66,33 @@
                         <input class="form-control " id="nomeMae" name="nomeMae" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["nomeMae"] : ""; ?>" type="text" placeholder="">
                     </div>
 
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="profissaoId">Profissão</label>
+                        <select class="form-control select2" data-bs-toggle="select2" width="fit" name="profissaoId" id="profissaoId" required>
+                            <?php foreach ($Profissao as $item) : ?>
+                                <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["profissaoId"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                        <label for="escolaridadeId">Escolaridade</label>
+                        <select class="form-control select2" data-bs-toggle="select2" width="fit" name="escolaridadeId" id="escolaridadeId" required>
+                            <?php foreach ($Escolaridade as $item) : ?>
+                                <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["escolaridadeId"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+
                     <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
                         <label for="foto">Foto</label>
                         <input class="form-control form-control-file" name="foto" id="foto" type="file" accept="image/gif, image/jpeg, image/png">
+                    </div>
+                    
+                    <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                        <label for="formulariolgpd">Formulário de Aceite LGPD</label>
+                        <input class="form-control form-control-file" name="formulariolgpd" id="formulariolgpd" type="file" accept="application/pdf">
                     </div>
 
 
@@ -92,6 +116,9 @@
 
                 </div>
             </div>
+
+
+           
 
 
 
@@ -178,9 +205,14 @@
                     </select>
                 </div>
 
-                <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
-                    <label for="pais">Pais</label>
-                    <input class="form-control" id="pais" name="pais" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["pais"] : "Brasil"; ?>" type="text" placeholder="" required>
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="pais">Paises*</label>
+                    <select class="form-control select2" data-bs-toggle="select2" width="fit" name="pais" id="pais" required="required">
+                        <option value="" disabled selected>Selecione</option>
+                        <?php foreach ($Paises as $item) : ?>
+                            <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["pais"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
@@ -213,32 +245,53 @@
 
             <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
                 <label for="numeroRolPermanente">Número no rol Permanente*</label>
-                <input class="form-control " id="numeroRolPermanente" name="numeroRolPermanente" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["numeroRolPermanente"] : ""; ?>" type="text" placeholder="" required>
+                <input class="form-control cardMembro" readonly id="numeroRolPermanente" name="numeroRolPermanente" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["numeroRolPermanente"] : ""; ?>" type="text" placeholder="">
+                
             </div>
 
             <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
                 <label for="anoConversao">Ano da Conversão*</label>
-                <input class="form-control " id="anoConversao" name="anoConversao" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["anoConversao"] : ""; ?>" type="text" placeholder="" required>
+                <input class="form-control cardMembro" id="anoConversao" name="anoConversao" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["anoConversao"] : ""; ?>" type="text" placeholder="">
+                
             </div>
 
             <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
                 <label for="dataBatismo">Data do Batismo*</label>
-                <input class="form-control date" id="dataBatismo" name="dataBatismo" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataBatismo"] : ""; ?>" type="text" placeholder="" required>
+                <input class="form-control date cardMembro" id="dataBatismo" name="dataBatismo" maxlength="20" value="<?php echo (isset($entidade)  && isset($entidade["dataBatismo"])) ? date('d/m/Y', strtotime($entidade["dataBatismo"])) : ""; ?>" type="text" placeholder="">
+                
             </div>
 
-            <div class="mb-3 col-lg-3 col-md-3 col-sm-12">
-                <label for="profissao">Profissão</label>
-                <input class="form-control " id="profissao" name="profissao" maxlength="200" value="<?php echo (isset($entidade)) ? $entidade["profissao"] : ""; ?>" type="text" placeholder="">
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
+                <label for="dataRecepcao">Data da Recepção*</label>
+                <input class="form-control date cardMembro" id="dataRecepcao" name="dataRecepcao" maxlength="20" value="<?php echo (isset($entidade)  && isset($entidade["dataRecepcao"])) ? date('d/m/Y', strtotime($entidade["dataRecepcao"])) : ""; ?>" type="text" placeholder="">
+                
             </div>
 
+
             <div class="mb-3 col-lg-3 col-md-3 col-sm-12">
-                <label for="situacao">Situacao*</label>
-                <select class="form-control select2" data-bs-toggle="select2" width="fit" name="situacao" id="situacao" required>
+                <label for="situacao">Situação</label>
+                <select class="form-control select2 cardMembro" data-bs-toggle="select2" onchange="viewSituacao(this.value);" width="fit" name="situacao" id="situacao">
                     <option value="" disabled selected>Selecione</option>
                     <?php foreach ($Situacao as $item) : ?>
                         <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["situacao"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
                     <?php endforeach; ?>
                 </select>
+                
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-12 exclusao">
+                <label for="motivoExclusaoId">Motivo da Exclusão</label>
+                <select class="form-control select2 cardMembro" data-bs-toggle="select2" width="fit" name="motivoExclusaoId" id="motivoExclusaoId">
+                    <option value="" disabled selected>Selecione</option>
+                    <?php foreach ($MotivoExclusao as $item) : ?>
+                        <option value="<?php echo $item["id"]; ?>" <?php echo (isset($entidade) and $item["id"] == $entidade["motivoExclusaoId"]) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
+                <label for="dataSaida cardMembro">Data do Saída</label>
+                <input class="form-control date" id="dataSaida" name="dataSaida" maxlength="20" value="<?php echo (isset($entidade) && isset($entidade["dataSaida"])) ? date('d/m/Y', strtotime($entidade["dataSaida"])) : ""; ?>" type="text" placeholder="">
             </div>
 
 
@@ -246,10 +299,6 @@
     </div>
 
 </div>
-
-
-
-
 
 
 
@@ -291,10 +340,11 @@
     });
 
     viewEstadoCivil(jQuery("#estadoCivil").val());
-    viewTipoPessoa(vTipo)(jQuery("#tipoPessoa").val());
+    viewTipoPessoa(jQuery("#tipoPessoa").val());
+    viewSituacao(jQuery("#situacao").val());
 
     function viewEstadoCivil(vEstadoCivil) {
-        if (vEstadoCivil == 2) { //2 = casado
+        if (vEstadoCivil == 2 || vEstadoCivil == 5) { //2 = casado
             jQuery(".divNomeConjuge").show();
         } else {
             jQuery(".divNomeConjuge").hide();
@@ -306,6 +356,14 @@
             jQuery(".cardMembro").show();
         } else {
             jQuery(".cardMembro").hide();
+        }
+    }
+
+    function viewSituacao(vTipo) {
+        if (vTipo == 4) { //4 = excluido
+            jQuery(".exclusao").show();
+        } else {
+            jQuery(".exclusao").hide();
         }
     }
 </script>

@@ -45,6 +45,4 @@
 
 <?= $this->section('script') ?>
 
-//script js
-
 <?= $this->endSection() ?>

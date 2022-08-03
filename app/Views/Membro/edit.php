@@ -43,9 +43,27 @@
 
     <?= $this->include($dirView . '/form') ?>
 
-    <?= $this->include('Includes/botoes_alterar_apagar') ?>
+    
 
+    <div class="col-12 text-center mt-3">
+        <button class="btn btn-info mb-3" type="submit"><i class="fas fa-edit"></i> Alterar</button>
 
+        <?php if ($entidade["tipoPessoa"] == 1) : ?>
+        <button type="button mb-3" style="margin-top: -17px;" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Alterar Situação
+        </button>
+        <div class="dropdown-menu" style="">
+            <a class="dropdown-item" href="<?php echo base_url(); ?>/membro-transferencia/new?membroId=<?php echo $entidade["id"] ?>">Transferir para outra igreja</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Aplicar Disciplina</a>
+            <a class="dropdown-item" href="#">Desligar Membro</a>
+        </div>
+        <?php endif; ?>
+
+        <button class="btn btn-danger mb-3" type="button" onclick="remover('delete/<?php echo $entidade["id"]; ?>');"><i class="fas fa-trash-alt"></i> Apagar</button>
+    </div>
+
+    <?php if ($entidade["tipoPessoa"] == 1) : ?>
     <div class="card mb-3 cardMembro">
         <div class="card-header">
             <h5 class="mb-0" id="historicos">Histórico</h5>
@@ -55,7 +73,7 @@
             <div class="row">
 
                 <div class="col-12">
-                    <a href="<?php echo base_url(); ?>/membro-historico/new?membroId=<?php echo $entidade["id"] ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo Histórico </a>
+                    <!-- <a href="<?php echo base_url(); ?>/membro-historico/new?membroId=<?php echo $entidade["id"] ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo Histórico </a> -->
                     <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
                         <thead class="thead-light">
                             <tr>
@@ -64,7 +82,7 @@
                                 <th>Instituição de Origem</th>
                                 <th>Instituição de Destino</th>
                                 <th>Descrição da Mudança</th>
-                                
+
 
                                 <th width="150"></th>
                             </tr>
@@ -74,7 +92,7 @@
 
                                 <tr>
 
-                                    <td><?php echo date("d/m/Y", strtotime($registro["dataMovimentacao"])); ?></td>
+                                    <td><?php echo date("d/m/Y", strtotime($registro["dataHistorico"])); ?></td>
                                     <td><?php echo $registro["origemNome"]; ?></td>
                                     <td><?php echo $registro["destinoNome"]; ?></td>
                                     <td><?php echo $registro["descricao"]; ?></td>
@@ -90,7 +108,7 @@
                         </tbody>
                     </table>
 
-                
+
                 </div>
 
             </div>
@@ -102,7 +120,7 @@
     <div class="card mb-3 cardMembro">
         <div class="card-header">
             <h5 class="mb-0" id="capacitacoes">Capacitações</h5>
-            
+
         </div>
 
         <div class="card-body">
@@ -117,7 +135,8 @@
                                 <th>Nome da Capacitação</th>
                                 <th>Data </th>
                                 <th>Carga Horária</th>
-                                
+                                <th>Certificado</th>
+
 
                                 <th width="150"></th>
                             </tr>
@@ -128,8 +147,13 @@
                                 <tr>
 
                                     <td><?php echo $registro["nome"]; ?></td>
-                                    <td><?php echo date("d/m/Y", strtotime($registro["dataCapacitacao"])) ; ?></td>
+                                    <td><?php echo date("d/m/Y", strtotime($registro["dataCapacitacao"])); ?></td>
                                     <td><?php echo $registro["cargaHoraria"]; ?></td>
+                                    <td>
+                                        <?php if ($registro["certificado"] = "") :  ?>
+                                            <a href="<?php echo base_url(); ?>/public/uploads/Certificado/<?php echo $registro["certificado"]; ?>">Baixar Certificado</a>
+                                        <?php endif; ?>
+                                    </td>
 
                                     <td class="table-action">
                                         <a href="<?php echo base_url(); ?>/membro-capacitacao/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
@@ -142,13 +166,15 @@
                         </tbody>
                     </table>
 
-                    
+
 
                 </div>
 
             </div>
         </div>
     </div>
+
+    <?php endif; ?>
 
 
 </form>

@@ -886,3 +886,5 @@ on i.usuario_id = pp.usuario_id
 group by i.usuario_id, i.instituicao_id
 having count(*) = 1)
 --order by i.usuario_id, i.instituicao_id, pp.perfil_id
+
+

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MembroCapacitacaoModel extends Model
+class NomeacaoModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'MembroCapacitacao';
+    protected $table            = 'Nomeacao';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,8 +15,7 @@ class MembroCapacitacaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'membroId', 'dataCapacitacao', 'nome', 'cargaHoraria', 'Certificado', 'isIWE'
-        , 'created_by', 'updated_by'
+        'instituicaoId', 'cargoNomeacaoId', 'nomeadoId', 'mandatoInicio', 'mandatoFim', 'created_by', 'updated_by'
     ];
 
     // Dates
