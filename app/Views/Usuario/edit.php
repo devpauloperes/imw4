@@ -71,7 +71,7 @@
 
                             <th>Perfil</th>
                             <th>Instituição</th>
-                            <th>Cadastra Usuários?</th>
+
 
                             <th width="150"></th>
                         </tr>
@@ -101,7 +101,7 @@
                                     }
                                     ?></td>
                                 <td><?php echo $registro["instituicaoNome"]; ?></td>
-                                <td><?php echo ($registro["isCadastraUsuario"] == 1) ? "Sim" : "Não"; ?></td>
+
 
                                 <td class="table-action">
                                     <a href="<?php echo base_url(); ?>/usuario-instituicao/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>

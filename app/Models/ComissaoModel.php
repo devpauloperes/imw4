@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProfissaoModel extends Model
+class ComissaoModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'Profissao';
+    protected $table            = 'Comissao';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,7 @@ class ProfissaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nome', 'created_by', 'updated_by'
+        'nome', 'dataInicio', 'dataFim',  'created_by', 'updated_by'
     ];
 
     // Dates

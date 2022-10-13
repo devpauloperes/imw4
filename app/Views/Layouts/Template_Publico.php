@@ -56,10 +56,7 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-1">
-							<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-2.png" >
-							<p class="lead mt-3">
-								Igreja Metodista Wesleyana, lugar de esperança.
-							</p>
+							<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logo.png" class="img-fluid rounded-circle mb-2" >
 						</div>
 
             <?= $this->renderSection('conteudo') ?>

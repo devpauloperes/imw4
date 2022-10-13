@@ -28,34 +28,44 @@
                 <div class="col-lg-12">
                     <?= $this->include('Includes/mensagens') ?>
 
-                    <p class="mt-3">Total de membros no rol: <?= $pager->getTotal(); ?></p>
+                    <p class="mt-2">Filtros para pesquisa</p>
 
 
                 </div>
 
-              
+                <div class="form-group col-lg-10 col-md-10 col-sm-9">
+                    <label for="nome">Nome</label>
+                    <input class="form-control " id="nome" name="nome" maxlength="200" value="<?php echo (isset($_GET["nome"])) ? $_GET["nome"] : ""; ?>" type="text" placeholder="">
+                </div>
+
+               
+
+                <div class="form-group col-lg-1 col-md-1 col-sm-6 mt-4">
+                    <button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
 <div class="card mb-3">
-    
+    <div class="card-header">
+        <h5 class="mb-0">Listagem de Registros</h5>
+    </div>
 
     <div class="card-body">
         <div class="row">
 
             <div class="col-12">
-                
+                <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/new" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo </a>
                 <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
                     <thead class="thead-light">
                         <tr>
 
-                            <th>Rol</th>
                             <th>Nome</th>
-                            <th class="text-center">Recepção</th>
-                            <th class="text-center">Exclusão</th>
                            
+                            
+                            <th width="150"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,10 +73,13 @@
 
                             <tr>
 
-                                <td><?php echo $registro["numeroRolPermanente"]; ?></td>
                                 <td><?php echo $registro["nome"]; ?></td>
-                                <td class="text-center"><?php echo ($registro["dataRecepcao"] != null) ? date('d/m/Y', strtotime($registro["dataRecepcao"]))  : "-" ; ?></td>
-                                <td class="text-center"><?php echo ($registro["dataSaida"] != null) ? date('d/m/Y', strtotime($registro["dataSaida"]))  : "-" ; ?></td>                                                                
+                                
+                                
+                                <td class="table-action">
+                                    <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                    <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo $route; ?>/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                </td>
                             </tr>
 
                         <?php endforeach; ?>

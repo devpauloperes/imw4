@@ -3,23 +3,24 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\TipoInstituicaoModel;
+use App\Models\ComissaoModel;
+use DateTime;
 use Exception;
 
-class NomeacaoController extends BaseController
+class ComissaoController extends BaseController
 {
 
-    private $route = 'nomeacao';
-    private $titlePage = 'Nomeações';
-    private $dirView = 'Nomeacao';
+    private $route = 'comissao';
+    private $titlePage = 'Comissões';
+    private $dirView = 'Comissao';
 
     public function index()
     {
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
 
-        $model = new TipoInstituicaoModel();
-        $data['registros'] = $model->orderBy('hierarquia', 'ASC');
+        $model = new ComissaoModel();
+        $data['registros'] = $model->orderBy('nome', 'ASC');
 
         //caso seja necessário pesquisar por nome
         if ($this->request->getGet("nome"))
@@ -37,7 +38,9 @@ class NomeacaoController extends BaseController
         $data["route"]      = $this->route;
         $data["dirView"]      = $this->dirView;
 
-        
+        $data["Cores"] = [
+           
+        ];
 
         return view( $this->dirView. '/new', $data);
     }
@@ -46,9 +49,16 @@ class NomeacaoController extends BaseController
     {
 
         $data["nome"] = $this->request->getPost("nome");
-        $data["cor"] = $this->request->getPost("cor");
-        $data["sigla"] = $this->request->getPost("sigla");
-        $data["hierarquia"] = $this->request->getPost("hierarquia");
+        
+        if ($this->request->getPost('dataInicio') != "") {
+            $dataInicio = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataInicio'));
+            $data["dataInicio"] = date_format($dataInicio, "Y-m-d");
+        }
+
+        if ($this->request->getPost('dataFim') != "") {
+            $dataFim = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataFim'));
+            $data["dataFim"] = date_format($dataFim, "Y-m-d");
+        }
 
         return $data;
     }
@@ -57,7 +67,7 @@ class NomeacaoController extends BaseController
     {
         helper(['form', 'url']);
 
-        $model = new TipoInstituicaoModel();
+        $model = new ComissaoModel();
         $data = $this->getDados();
         $data["created_by"] = $this->usuario["id"];
 
@@ -80,11 +90,9 @@ class NomeacaoController extends BaseController
         helper(['form', 'url']);
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
-        $data["dirView"]      = $this->dirView;
+        $data["dirView"]      = $this->dirView;       
 
-        
-
-        $model = new TipoInstituicaoModel();
+        $model = new ComissaoModel();
         $data['entidade'] = $model->where('id', $id)->first();
 
         return view( $this->dirView. '/edit', $data);
@@ -92,7 +100,7 @@ class NomeacaoController extends BaseController
 
     public function update($id = null)
     {
-        $model = new TipoInstituicaoModel();
+        $model = new ComissaoModel();
         $data = $this->getDados(); 
         $data["updated_by"] = $this->usuario["id"];       
 
@@ -114,7 +122,7 @@ class NomeacaoController extends BaseController
 
     public function delete($id = null)
     {
-        $model = new TipoInstituicaoModel();        
+        $model = new ComissaoModel();        
 
         try {
             

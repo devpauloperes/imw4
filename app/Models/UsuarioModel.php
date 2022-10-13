@@ -15,7 +15,7 @@ class UsuarioModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'hash', 'nome', 'cpf', 'email', 'celular', 'senha', 'isAtivo', 'created_by', 'updated_by'
+        'hash', 'nome', 'cpf', 'email', 'celular', 'senha', 'isAtivo', 'isSuperUsuario', 'created_by', 'updated_by'
     ];
 
     // Dates

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CargoNomeacaoModel extends Model
+class FuncaoEclesiasticaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'CargoNomeacao';
+    protected $table            = 'FuncaoEclesiastica';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,7 +15,7 @@ class CargoNomeacaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nome', 'mandato', 'tipoInstituicaoId', 'quemConcorre', 'created_by', 'updated_by'
+        'nome',  'created_by', 'updated_by'
     ];
 
     // Dates

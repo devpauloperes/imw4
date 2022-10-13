@@ -3,23 +3,22 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\CargoNomeacaoModel;
-use App\Models\InstituicaoModel;
+use App\Models\FuncaoEclesiasticaModel;
 use Exception;
 
-class CargoNomeacaoController extends BaseController
+class FuncaoEclesiasticaController extends BaseController
 {
 
-    private $route = 'cargo-nomeacao';
-    private $titlePage = 'Cargos para Nomeação';
-    private $dirView = 'CargoNomeacao';
+    private $route = 'funcao-eclesiastica';
+    private $titlePage = 'Funções Eclesiasticas';
+    private $dirView = 'FuncaoEclesiastica';
 
     public function index()
     {
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
 
-        $model = new CargoNomeacaoModel();
+        $model = new FuncaoEclesiasticaModel();
         $data['registros'] = $model->orderBy('nome', 'ASC');
 
         //caso seja necessário pesquisar por nome
@@ -32,18 +31,15 @@ class CargoNomeacaoController extends BaseController
         return view( $this->dirView. '/list', $data);
     }
 
-    private function getInstituicao(){
-        $instituicaoModel = new InstituicaoModel();
-        return $instituicaoModel->findAll();
-    }
-
     public function new()
     {
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
         $data["dirView"]      = $this->dirView;
 
-        $data["Instituicao"] = $this->getInstituicao();
+        $data["Cores"] = [
+           
+        ];
 
         return view( $this->dirView. '/new', $data);
     }
@@ -52,9 +48,6 @@ class CargoNomeacaoController extends BaseController
     {
 
         $data["nome"] = $this->request->getPost("nome");
-        $data["mandato"] = $this->request->getPost("mandato");
-        $data["tipoInstituicaoId"] = $this->request->getPost("tipoInstituicaoId");
-        $data["quemConcorre"] = $this->request->getPost("quemConcorre");
 
         return $data;
     }
@@ -63,7 +56,7 @@ class CargoNomeacaoController extends BaseController
     {
         helper(['form', 'url']);
 
-        $model = new CargoNomeacaoModel();
+        $model = new FuncaoEclesiasticaModel();
         $data = $this->getDados();
         $data["created_by"] = $this->usuario["id"];
 
@@ -86,11 +79,9 @@ class CargoNomeacaoController extends BaseController
         helper(['form', 'url']);
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
-        $data["dirView"]      = $this->dirView;
+        $data["dirView"]      = $this->dirView;       
 
-        $data["Instituicao"] = $this->getInstituicao();
-
-        $model = new CargoNomeacaoModel();
+        $model = new FuncaoEclesiasticaModel();
         $data['entidade'] = $model->where('id', $id)->first();
 
         return view( $this->dirView. '/edit', $data);
@@ -98,7 +89,7 @@ class CargoNomeacaoController extends BaseController
 
     public function update($id = null)
     {
-        $model = new CargoNomeacaoModel();
+        $model = new FuncaoEclesiasticaModel();
         $data = $this->getDados(); 
         $data["updated_by"] = $this->usuario["id"];       
 
@@ -113,12 +104,14 @@ class CargoNomeacaoController extends BaseController
         } catch (Exception $ex) {
             return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
         }
+
         
     }
 
+
     public function delete($id = null)
     {
-        $model = new CargoNomeacaoModel();        
+        $model = new FuncaoEclesiasticaModel();        
 
         try {
             

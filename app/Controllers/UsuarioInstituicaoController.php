@@ -43,23 +43,23 @@ class UsuarioInstituicaoController extends BaseController
 
             [
                 "id" => 2,
-                "nome" => "Tesoureiro",
+                "nome" => "SD",
             ],
 
             [
                 "id" => 3,
-                "nome" => "Secretaria",
-            ],
-
-            [
-                "id" => 4,
                 "nome" => "Pastor",
             ],
+            
+            [
+                "id" => 4,
+                "nome" => "Tesoureiro",
+            ],        
 
         ];
 
         $instituicaoModel = new InstituicaoModel();
-        $data["Instituicao"] = $instituicaoModel->orderby("nome")->findAll();
+        $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
 
         return view( $this->dirView. '/new', $data);
     }
@@ -112,23 +112,26 @@ class UsuarioInstituicaoController extends BaseController
 
             [
                 "id" => 2,
-                "nome" => "Tesoureiro",
+                "nome" => "SD",
             ],
 
             [
                 "id" => 3,
-                "nome" => "Secretaria",
-            ],
-
-            [
-                "id" => 4,
                 "nome" => "Pastor",
             ],
+            
+            [
+                "id" => 4,
+                "nome" => "Tesoureiro",
+            ],        
 
         ];
 
         $model = new UsuarioInstituicaoModel();
         $data['entidade'] = $model->where('id', $id)->first();
+
+        $instituicaoModel = new InstituicaoModel();
+        $data["Instituicao"] = $instituicaoModel->orderBy("nome")->findAll();
 
         return view( $this->dirView. '/edit', $data);
     }

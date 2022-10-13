@@ -101,20 +101,44 @@ CREATE TABLE IF NOT EXISTS Instituicao (
 ) ENGINE=InnoDB;
 
 
-DROP TABLE IF EXISTS Pessoa;
-CREATE TABLE IF NOT EXISTS Pessoa (
+DROP TABLE IF EXISTS Clerigo;
+CREATE TABLE IF NOT EXISTS Clerigo (
   id int(11) NOT NULL AUTO_INCREMENT,
   
+  tipoClerigoId int not null, -- PASTOR, REVERENDO, MISSIONARIA
+  dataConsagracao datetime,
+  dataOrdenacao datetime, -- somente para ministros
   nome varchar(255) not null,
   dataNascimento datetime not null,
   email varchar(200),
-  cpf varchar(11),
+  nacionalidade varchar(100),
+  escolaridadeId int,
+  sexo varchar(1),
   foto varchar(255),
+  racaId int,
+  isPne int,
+
   estadoCivil varchar(1),
   nomeConjuge varchar(255),
+  conjugeCPF varchar(11),
+  conjugeRg varchar(50), 
+  conjugeRgDataEmissao datetime,
+  conjugeRegimeBens varchar(50), 
+  
   nomePai varchar(255),
   nomeMae varchar(255),
-    
+
+  cpf varchar(11),
+  rg varchar(30),
+  dataEmissaoRg datetime,
+  ctps varchar(50),
+  dataEmissaoCtps datetime,
+  pis varchar(50),
+  tituloEleitoral varchar(50),
+  tituloEleitoralZona varchar(20),
+  tituloEleitoralSecao varchar(20),
+
+
   cep varchar(20),
   endereco varchar(255),
   numero varchar(20),
@@ -125,10 +149,20 @@ CREATE TABLE IF NOT EXISTS Pessoa (
   pais varchar(30),
   telefone varchar(20),
   celular varchar(20),
-  filhos text,
+  isFilhos boolean,
 
   isAtivo boolean NOT NULL,
   dataInativo datetime,
+
+  arquivoCtps varchar(255),
+  arquivoPis varchar(255),
+  arquivoRg varchar(255),
+  arquivoCpf varchar(255),
+  arquivoTituloEleitor varchar(255),
+  arquivoCertidaoNascimentoCasamento varchar(255),
+  arquivoComprovanteResidencia varchar(255),
+  arquivoExtratoPrevidenciario varchar(255),
+
   
   created_at datetime NOT NULL,
   created_by int NOT NULL,
@@ -139,77 +173,19 @@ CREATE TABLE IF NOT EXISTS Pessoa (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+-- Filhos
 
-DROP TABLE IF EXISTS Membro;
-CREATE TABLE IF NOT EXISTS Membro (
+CREATE TABLE IF NOT EXISTS Filho (
   id int(11) NOT NULL AUTO_INCREMENT,
-  
-  pessoaId int,
-  numeroRolPermanente int not null,
-  anoConversao int not null,
-  dataBatismo datetime not null,
-  profissao varchar(200),
-  situacao int,
-  instituicaoId int,
-
-  created_at datetime NOT NULL,
-  created_by int NOT NULL,
-  updated_at datetime,
-  updated_by int,
-  deleted_at datetime,
-
-  PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
-
-DROP TABLE IF EXISTS MembroHistorico;
-CREATE TABLE IF NOT EXISTS MembroHistorico (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  
-  membroId int not null,
-  dataMovimentacao datetime not null,
-  
-  instituicaoOrigemId int,
-  instituicaoDestinoId int,
-  descricao text not null,
-
-  created_at datetime NOT NULL,
-  created_by int NOT NULL,
-  updated_at datetime,
-  updated_by int,
-  deleted_at datetime,
-
-  PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
-
-DROP TABLE IF EXISTS MembroCapacitacao;
-CREATE TABLE IF NOT EXISTS MembroCapacitacao (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  
-  membroId int not null,
-  dataCapacitacao datetime not null,
   nome varchar(200) not null,
-  cargaHoraria int,
+  dataNascimento datetime not null,
+  cpf varchar(11),
 
-  created_at datetime NOT NULL,
-  created_by int NOT NULL,
-  updated_at datetime,
-  updated_by int,
-  deleted_at datetime,
-
-  PRIMARY KEY (id)
-) ENGINE=InnoDB;
-
-ALTER TABLE `Pessoa` ADD `tipoPessoa` INT NOT NULL AFTER `id`;
-
-
-
-DROP TABLE IF EXISTS IgrejaCargo;
-CREATE TABLE IF NOT EXISTS IgrejaCargo (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  nome varchar(100) NOT NULL,
-  mandato int not null,
+  arquivoCertidaoNascimento varchar(255),
+  arquivoRg varchar(255),
+  arquivoCpf varchar(255),
+  arquivoTituloEleitor varchar(255),
+  arquivoCarteiraVacina varchar(255),
   
   created_at datetime NOT NULL,
   created_by int NOT NULL,
@@ -218,16 +194,14 @@ CREATE TABLE IF NOT EXISTS IgrejaCargo (
   deleted_at datetime,
 
   PRIMARY KEY (id)
-) ENGINE=InnoDB;
+);
+
+-- LIDERES REGIONAIS
 
 
-DROP TABLE IF EXISTS CargoNomeacao;
-CREATE TABLE IF NOT EXISTS CargoNomeacao (
+CREATE TABLE IF NOT EXISTS FuncaoEclesiastica (
   id int(11) NOT NULL AUTO_INCREMENT,
-  nome varchar(100) NOT NULL,
-  mandato int not null,
-  tipoInstituicaoId int not null,
-  quemConcorre int,
+  nome varchar(200) not null,
   
   created_at datetime NOT NULL,
   created_by int NOT NULL,
@@ -236,17 +210,11 @@ CREATE TABLE IF NOT EXISTS CargoNomeacao (
   deleted_at datetime,
 
   PRIMARY KEY (id)
-) ENGINE=InnoDB;
+);
 
-
-DROP TABLE IF EXISTS Nomeacao;
-CREATE TABLE IF NOT EXISTS Nomeacao (
+CREATE TABLE IF NOT EXISTS TipoClerigo (
   id int(11) NOT NULL AUTO_INCREMENT,
-  instituicaoId int not null,
-  cargoNomeacaoId int not null,
-  nomeadoId int not null,
-  mandatoInicio int not null,
-  mandatoFim int not null,
+  nome varchar(200) not null,
   
   created_at datetime NOT NULL,
   created_by int NOT NULL,
@@ -255,5 +223,40 @@ CREATE TABLE IF NOT EXISTS Nomeacao (
   deleted_at datetime,
 
   PRIMARY KEY (id)
-) ENGINE=InnoDB;
+);
+
+
+CREATE TABLE IF NOT EXISTS Comissao (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(200) not null,
+  dataInicio datetime not null,
+  dataFim datetime,
+  descricao text,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS Concilio (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(200) not null,
+  numero varchar(20),
+  dataInicio datetime not null,
+  dataFim datetime not null,
+  descricao text, 
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);
 

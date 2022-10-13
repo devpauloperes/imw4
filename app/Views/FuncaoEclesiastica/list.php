@@ -62,11 +62,8 @@
                     <thead class="thead-light">
                         <tr>
 
-                            
                             <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Celular</th>
-                            <th>Ativa</th>
+                           
                             
                             <th width="150"></th>
                         </tr>
@@ -77,12 +74,10 @@
                             <tr>
 
                                 <td><?php echo $registro["nome"]; ?></td>
-                                <td><?php echo $registro["telefone"]; ?></td>
-                                <td><?php echo $registro["celular"]; ?></td>
-                                <td><?php echo ($registro["isAtivo"] == 1) ? "Sim" : "Não"; ?></td>
+                                
                                 
                                 <td class="table-action">
-                                    <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>?tipo=congregado" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                                    <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
                                     <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo $route; ?>/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>

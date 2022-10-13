@@ -43,6 +43,14 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+
+                <div class="custom-control custom-switch">
+                    <input class="custom-control-input" name="isSuperUsuario" id="isSuperUsuario" value="1" type="checkbox" <?php echo (isset($entidade) and '1' == $entidade["isSuperUsuario"]) ? 'checked="checked"' : ""; ?>>
+                    <label class="custom-control-label" for="isSuperUsuario">Administrador?</label>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ class InstituicaoController extends BaseController
 
         //caso seja necessário pesquisar por nome
         if ($this->request->getGet("nome"))
-            $data['registros'] = $data['registros']->like('nome', $this->request->getGet("nome"));
+            $data['registros'] = $data['registros']->like('Instituicao.nome', $this->request->getGet("nome"));
             
         $data['registros']  =  $data['registros']->paginate(env('registros.por.pagina'));
         $data['pager'] = $model->pager;

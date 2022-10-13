@@ -54,7 +54,7 @@
   <main>
 
     <div class="text-center mt-3">
-      <img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-2.png">
+      <img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logo.png" class="img-fluid rounded-circle mb-2">
     </div>
 
     <div class="container">

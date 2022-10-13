@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">
 
-            <input type="hidden" name="usuarioId" value="<?php echo ($_GET["usuarioId"] != null) ? $_GET["usuarioId"] : $entidade["usuarioId"]; ?>">
+            <input type="hidden" name="usuarioId" value="<?php echo ( $_GET != null && $_GET["usuarioId"] != null) ? $_GET["usuarioId"] : $entidade["usuarioId"]; ?>">
        
             
             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
@@ -29,12 +29,6 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <div class="custom-control custom-switch">
-                    <input class="custom-control-input" name="isCadastraUsuario" id="isCadastraUsuario" value="1" type="checkbox" <?php echo (isset($entidade) and '1' == $entidade["isCadastraUsuario"]) ? 'checked="checked"' : ""; ?>>
-                    <label class="custom-control-label" for="isCadastraUsuario">Pode cadastrar novos usuários?</label>
-                </div>
-            </div>
 
 
 

@@ -46,18 +46,20 @@ class UsuarioController extends BaseController
 
             [
                 "id" => 2,
-                "nome" => "Tesoureiro",
+                "nome" => "SD",
             ],
 
             [
                 "id" => 3,
-                "nome" => "Secretario",
-            ],
-
-            [
-                "id" => 4,
                 "nome" => "Pastor",
             ],
+            
+            [
+                "id" => 4,
+                "nome" => "Tesoureiro",
+            ],
+
+        
 
         ];
 
@@ -74,7 +76,8 @@ class UsuarioController extends BaseController
         $data["email"] = $this->request->getPost("email");
         $data["celular"] = $this->request->getPost("celular");
         $data["senha"] = sha1($this->request->getPost("senha"));
-        $data["isAtivo"] = $this->request->getPost("isAtivo");
+        $data["isAtivo"] = ($this->request->getPost("isAtivo") != null) ? 1 : 0;
+        $data["isSuperUsuario"] = ($this->request->getPost("isSuperUsuario") != null) ? 1 : 0;
 
 
         return $data;
@@ -118,18 +121,18 @@ class UsuarioController extends BaseController
 
             [
                 "id" => 2,
-                "nome" => "Tesoureiro",
+                "nome" => "SD",
             ],
 
             [
                 "id" => 3,
-                "nome" => "Secretario",
-            ],
-
-            [
-                "id" => 4,
                 "nome" => "Pastor",
             ],
+            
+            [
+                "id" => 4,
+                "nome" => "Tesoureiro",
+            ],        
 
         ];
 

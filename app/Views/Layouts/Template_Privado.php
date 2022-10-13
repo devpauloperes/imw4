@@ -28,7 +28,7 @@
 	<!-- ===============================================-->
 	<!--    Stylesheets-->
 	<!-- ===============================================-->
-	<link href="<?php echo base_url(); ?>/public/assets/css/modern.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>/public/assets/css/dark.css" rel="stylesheet">
 
 	<style>
 		body {
@@ -53,7 +53,7 @@
 		<nav id="sidebar" class="sidebar">
 			<div class="text-center">
 				<a class="sidebar-brand" href="<?php echo base_url(); ?>">
-					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logomarca-branca-2.png" width="190" />
+					<img src="<?php echo base_url(); ?>/public/assets/img/illustrations/logo.png" class="img-fluid rounded-circle mb-2" width="150" />
 				</a>
 			</div>
 			<div class="sidebar-content">

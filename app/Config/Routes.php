@@ -90,56 +90,37 @@ $routes->get('usuarios/(:segment)',              'UsuarioController::edit/$1');
 $routes->post('usuarios/update/(:segment)',     'UsuarioController::update/$1');
 $routes->get('usuarios/delete/(:segment)',     'UsuarioController::delete/$1');
 
-//Rol Permanente
-$routes->get('rol-permanente',                             'RolPermanenteController::index');
+//Funcao Eclesiastica
+$routes->get('funcao-eclesiastica/new',                    'FuncaoEclesiasticaController::new');
+$routes->post('funcao-eclesiastica',                       'FuncaoEclesiasticaController::create');
+$routes->get('funcao-eclesiastica',                        'FuncaoEclesiasticaController::index');
+$routes->get('funcao-eclesiastica/(:segment)',              'FuncaoEclesiasticaController::edit/$1');
+$routes->post('funcao-eclesiastica/update/(:segment)',     'FuncaoEclesiasticaController::update/$1');
+$routes->get('funcao-eclesiastica/delete/(:segment)',     'FuncaoEclesiasticaController::delete/$1');
 
-//Rol Atual
-$routes->get('rol-atual',                                  'RolAtualController::index');
+//Usuarios Instituicao
+$routes->get('usuario-instituicao/new',                    'UsuarioInstituicaoController::new');
+$routes->post('usuario-instituicao',                       'UsuarioInstituicaoController::create');
+$routes->get('usuario-instituicao',                        'UsuarioInstituicaoController::index');
+$routes->get('usuario-instituicao/(:segment)',              'UsuarioInstituicaoController::edit/$1');
+$routes->post('usuario-instituicao/update/(:segment)',     'UsuarioInstituicaoController::update/$1');
+$routes->get('usuario-instituicao/delete/(:segment)',     'UsuarioInstituicaoController::delete/$1');
 
-//Membros em transferência
-$routes->get('membro-em-transferencia',                    'MembroEmTransferenciaController::index');
+//Comissões
+$routes->get('comissao/new',                    'ComissaoController::new');
+$routes->post('comissao',                       'ComissaoController::create');
+$routes->get('comissao',                        'ComissaoController::index');
+$routes->get('comissao/(:segment)',              'ComissaoController::edit/$1');
+$routes->post('comissao/update/(:segment)',     'ComissaoController::update/$1');
+$routes->get('comissao/delete/(:segment)',     'ComissaoController::delete/$1');
 
-//Membros em transferência
-$routes->get('membro-cancelar-transferencia',                    'MembroCancelarTransferenciaController::index');
-
-//Recepcionar Membros em transferência
-$routes->get('membro-recepcionar',                          'MembroRecepcionarController::index');
-$routes->get('membro-recepcionar/(:segment)',              'MembroRecepcionarController::edit/$1');
-
-//Transferência
-$routes->get('membro-transferencia/new',                    'MembroTransferenciaController::new');
-$routes->post('membro-transferencia',                       'MembroTransferenciaController::create');
-$routes->get('membro-transferencia',                        'MembroTransferenciaController::index');
-$routes->get('membro-transferencia/(:segment)',              'MembroTransferenciaController::edit/$1');
-$routes->post('membro-transferencia/update/(:segment)',     'MembroTransferenciaController::update/$1');
-$routes->get('membro-transferencia/delete/(:segment)',      'MembroTransferenciaController::delete/$1');
-
-//Mebresia
-$routes->get('membro/new',                    'MembroController::new');
-$routes->post('membro',                       'MembroController::create');
-$routes->get('membro',                        'MembroController::index');
-$routes->get('membro/(:segment)',              'MembroController::edit/$1');
-$routes->post('membro/update/(:segment)',     'MembroController::update/$1');
-$routes->get('membro/delete/(:segment)',     'MembroController::delete/$1');
-
-//Congregados
-$routes->get('congregados',                        'CongregadosController::index');
-
-//Historico Membro
-$routes->get('membro-historico/new',                    'MembroHistoricoController::new');
-$routes->post('membro-historico',                       'MembroHistoricoController::create');
-$routes->get('membro-historico',                        'MembroHistoricoController::index');
-$routes->get('membro-historico/(:segment)',              'MembroHistoricoController::edit/$1');
-$routes->post('membro-historico/update/(:segment)',     'MembroHistoricoController::update/$1');
-$routes->get('membro-historico/delete/(:segment)',     'MembroHistoricoController::delete/$1');
-
-//Capacitacao do Membro
-$routes->get('membro-capacitacao/new',                    'MembroCapacitacaoController::new');
-$routes->post('membro-capacitacao',                       'MembroCapacitacaoController::create');
-$routes->get('membro-capacitacao',                        'MembroCapacitacaoController::index');
-$routes->get('membro-capacitacao/(:segment)',              'MembroCapacitacaoController::edit/$1');
-$routes->post('membro-capacitacao/update/(:segment)',     'MembroCapacitacaoController::update/$1');
-$routes->get('membro-capacitacao/delete/(:segment)',     'MembroCapacitacaoController::delete/$1');
+//logar como
+$routes->get('troca-usuario/new',                	'Seguranca\LogarComoController::new');
+$routes->post('troca-usuario',                   	'Seguranca\LogarComoController::create');
+$routes->get('troca-usuario',                    	'Seguranca\LogarComoController::index');
+$routes->get('troca-usuario/(:segment)',    	  	'Seguranca\LogarComoController::edit/$1');
+$routes->post('troca-usuario/update/(:segment)', 	'Seguranca\LogarComoController::update/$1');
+$routes->get('troca-usuario/delete/(:segment)', 	'Seguranca\LogarComoController::delete/$1');
 
 
 /*
