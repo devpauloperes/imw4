@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class InstituicaoModel extends Model
+class EscolaridadeModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'Instituicao';
+    protected $table            = 'escolaridade';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,11 +15,7 @@ class InstituicaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        
-        'nome', 'cnpj', 'email', 'dataAbertura', 'dataFechamento', 'tipoInstituicaoId', 'instituicaoId', 'cep', 'endereco', 
-        'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 'telefone', 'pastorId', 'tesoureiroId', 
-        'qtd_capacidade_lotacao', 'qtd_membros', 'qtd_lideranca', 'qtd_gceu', 'qtd_congregados'
-        ,'isAtivo', 'created_by', 'updated_by'
+        'nome',  'created_by', 'updated_by'
     ];
 
     // Dates

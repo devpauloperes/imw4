@@ -69,6 +69,10 @@
 					<?php echo $this->include("Includes/menus"); ?>
 				<?php endif; ?>
 
+				<?php if ($_SESSION["UsuarioLogado"]["perfilId"] == 5) : ?>
+					<?php echo $this->include("Includes/menusAspirante"); ?>
+				<?php endif; ?>
+
 			</div>
 		</nav>
 		<div class="main">

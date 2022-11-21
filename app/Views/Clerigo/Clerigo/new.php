@@ -11,11 +11,12 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>">In&iacute;cio</a></li>
                 <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>/<?php echo $route; ?>">Listagem</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edição</li>
+                <li class="breadcrumb-item active" aria-current="page">Novo Registro</li>
             </ol>
         </nav>
     </div>
 </div>
+
 
 <div class="card mb-3">
     <div class="bg-holder d-none d-lg-block bg-card gb-title">
@@ -23,22 +24,27 @@
     <!--/.bg-holder-->
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <?= $this->include('Includes/mensagens') ?>
 
-                <p class="mt-2">Altera&ccedil;&atilde;o de registro</p>
+                <p class="mt-2">Inserir novo registro</p>
 
             </div>
         </div>
     </div>
 </div>
 
-<form method="POST" action="update/<?php echo $entidade["id"]; ?>">
+<form method="POST" action="./">
+    <?= $this->include($dirView . '/form') ?>
+    <?= $this->include('Includes/botao_salvar') ?>            
+</form>
 
-                    <?= $this->include($dirView . '/form') ?>
+<?= $this->endSection() ?>
 
-                    <?= $this->include('Includes/botoes_alterar_apagar') ?>
 
-                </form>
+
+<?= $this->section('script') ?>
+
+//script js
 
 <?= $this->endSection() ?>

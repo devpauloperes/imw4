@@ -15,7 +15,7 @@ class UsuarioModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'hash', 'nome', 'cpf', 'email', 'celular', 'senha', 'isAtivo', 'isSuperUsuario', 'created_by', 'updated_by'
+        'hash', 'nome', 'perfilId', 'cpf', 'email', 'celular', 'senha', 'isAtivo', 'isSuperUsuario', 'created_by', 'updated_by'
     ];
 
     // Dates
@@ -24,6 +24,7 @@ class UsuarioModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
 
     // Validation
     protected $validationRules      = [];

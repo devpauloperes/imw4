@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Clerigo;
 
 use CodeIgniter\Model;
 
-class InstituicaoModel extends Model
+class ClerigoModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'Instituicao';
+    protected $table            = 'clerigo_clerigo';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,11 +15,13 @@ class InstituicaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        
-        'nome', 'cnpj', 'email', 'dataAbertura', 'dataFechamento', 'tipoInstituicaoId', 'instituicaoId', 'cep', 'endereco', 
-        'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 'telefone', 'pastorId', 'tesoureiroId', 
-        'qtd_capacidade_lotacao', 'qtd_membros', 'qtd_lideranca', 'qtd_gceu', 'qtd_congregados'
-        ,'isAtivo', 'created_by', 'updated_by'
+        'tipoClerigoId', 'dataConsagracao', 'dataOrdenacao', 'nome', 'dataNascimento', 'email', 'nacionalidade', 'escolaridadeId', 
+        'sexo', 'foto', 'racaId', 'isPne', 'estadoCivil', 'nomeConjuge', 'conjugeCPF', 'conjugeRg', 'conjugeRgDataEmissao', 
+        'conjugeRegimeBens', 'nomePai', 'nomeMae', 'cpf', 'rg', 'dataEmissaoRg', 'ctps', 'dataEmissaoCtps', 'pis', 'tituloEleitoral', 
+        'tituloEleitoralZona', 'tituloEleitoralSecao', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 
+        'telefone', 'celular', 'isFilhos', 'isAtivo', 'dataInativo', 'arquivoCtps', 'arquivoPis', 'arquivoRg', 'arquivoCpf', 
+        'arquivoTituloEleitor', 'arquivoCertidaoNascimentoCasamento', 'arquivoComprovanteResidencia', 'arquivoExtratoPrevidenciario',  
+        'created_by', 'updated_by'
     ];
 
     // Dates

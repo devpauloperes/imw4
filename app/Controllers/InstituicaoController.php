@@ -79,6 +79,12 @@ class InstituicaoController extends BaseController
         $data["pastorId"] = $this->request->getPost("pastorId");
         $data["tesoureiroId"] = $this->request->getPost("tesoureiroId");
         
+        $data["qtd_capacidade_lotacao"] = ($this->request->getPost("qtd_capacidade_lotacao") != "") ? $this->request->getPost("qtd_capacidade_lotacao") : 0 ;
+        $data["qtd_membros"] = ($this->request->getPost("qtd_membros")!= "") ? $this->request->getPost("qtd_membros") : 0;
+        $data["qtd_congregados"] = ($this->request->getPost("qtd_congregados")!= "") ? $this->request->getPost("qtd_congregados") : 0;
+        $data["qtd_lideranca"] = ($this->request->getPost("qtd_lideranca")!= "") ? $this->request->getPost("qtd_lideranca") : 0;
+        $data["qtd_gceu"] = ($this->request->getPost("qtd_gceu")!= "") ? $this->request->getPost("qtd_gceu") : 0;
+        
         $data["isAtivo"] = ($this->request->getPost("isAtivo") != null) ? 1 : 0;        
 
         return $data;

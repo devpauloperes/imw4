@@ -12,5 +12,11 @@ AND TABLE_NAME not in ( 'FuncaoEclesiastica',
                         'Usuario_Instituicao', 
                         'TipoInstituicao', 
                         'Instituicao',
-                        'Comissao');
+                        'Comissao',
+                        'TipoClerigo'
+                        ,'aspirante_aspirante'
+                        ,'aspirante_aspirante_documentos'
+                        ,'clerigo_clerigo'
+                        ,'clerigo_clerigo_dependente'
+                        );
 

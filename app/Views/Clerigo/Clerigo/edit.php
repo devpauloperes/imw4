@@ -33,12 +33,25 @@
     </div>
 </div>
 
-<form method="POST" action="update/<?php echo $entidade["id"]; ?>">
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="mb-0">Formul&aacute;rio de Altera&ccedil;&atilde;o</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST" action="update/<?php echo $entidade["id"]; ?>">
 
                     <?= $this->include($dirView . '/form') ?>
 
                     <?= $this->include('Includes/botoes_alterar_apagar') ?>
 
                 </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <?= $this->endSection() ?>

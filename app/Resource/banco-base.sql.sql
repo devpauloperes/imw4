@@ -101,8 +101,8 @@ CREATE TABLE IF NOT EXISTS Instituicao (
 ) ENGINE=InnoDB;
 
 
-DROP TABLE IF EXISTS Clerigo;
-CREATE TABLE IF NOT EXISTS Clerigo (
+
+CREATE TABLE IF NOT EXISTS clerigo_clerigo (
   id int(11) NOT NULL AUTO_INCREMENT,
   
   tipoClerigoId int not null, -- PASTOR, REVERENDO, MISSIONARIA
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS Clerigo (
 
 -- Filhos
 
-CREATE TABLE IF NOT EXISTS Filho (
+CREATE TABLE IF NOT EXISTS clerigo_clerigo_dependente (
   id int(11) NOT NULL AUTO_INCREMENT,
   nome varchar(200) not null,
   dataNascimento datetime not null,
@@ -260,3 +260,109 @@ CREATE TABLE IF NOT EXISTS Concilio (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS aspirante_aspirante (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(200) not null,
+  nomePai varchar(255),
+  nomeMae varchar(255),
+  dataNascimento datetime not null,
+  email varchar(200),
+  nacionalidade varchar(100),
+  escolaridadeId int,
+  sexo varchar(1),
+
+  estadoCivil varchar(1),
+  nomeConjuge varchar(255),
+
+  cep varchar(20),
+  endereco varchar(255),
+  numero varchar(20),
+  complemento varchar(255),
+  bairro varchar(255),
+  cidade varchar(255),
+  estado varchar(2),
+  pais varchar(30),
+  telefone varchar(20),
+  celular varchar(20),
+
+  igrejaId int not null,
+  
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS aspirante_aspirante_documentos (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  aspiranteId int,
+  ano int,
+
+  arquivoEBD varchar(255),
+  arquivoDizimo varchar(255),
+  arquivoRecomendacaoPastor varchar(255),
+  arquivoDeclaracaoConviccaoChamado varchar(255),
+  arquivoMembro4anos varchar(255),
+  arquivoAprovacaoProbatorioConselhoLocal varchar(255),
+  arquivoConclusaoTeologia varchar(255),
+  arquivoConclusaoTeologiaHistorico varchar(255),
+  arquivoComplementacaoTeologica varchar(255),
+  arquivoNascimentoCasamento varchar(255),
+  arquivoSPC varchar(255),
+  arquivoSerasa varchar(255),
+  arquivoInss varchar(255),
+  arquivoSubmissaoRegimeItinerante varchar(255),
+  arquivoProcessoJudicial varchar(255),
+  arquivoAposentado varchar(255),
+  arquivoDoenca varchar(255),
+  arquivoPsicotecnico varchar(255),
+  arquivoEsposaNoiva varchar(255),
+  arquivoRG varchar(255),
+  arquivoCPF varchar(255),
+  arquivoTituloEleitor varchar(255),
+  arquivoCetificadoEscolar varchar(255),
+  arquivoFotoPessoal varchar(255),
+  arquivoFotoFamiliar varchar(255),
+  arquivoQuitacaoIWE varchar(255),
+  arquivoEndereco varchar(255),
+  arquivoEntrevistaMinisterial varchar(255),
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS escolaridade (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(200) not null,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS raca (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(200) not null,
+  
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+);

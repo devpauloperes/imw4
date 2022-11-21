@@ -20,8 +20,13 @@ class AutenticacaoFilter implements FilterInterface {
                && $request->uri->getPath() != "esqueci-minha-senha"
                && $request->uri->getPath() != "trocar-senha"
                && $request->uri->getPath() != "confirmar-cadastro"
+               && $request->uri->getPath() != "aspirante/new"
+               && $request->uri->getPath() != "aspirante"
+               && $request->uri->getPath() != "clerigo/new"
+               && $request->uri->getPath() != "clerigo"
                 )
             {
+                //exit;
                 return redirect("login");
             }
             

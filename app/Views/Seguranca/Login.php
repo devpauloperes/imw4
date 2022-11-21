@@ -55,6 +55,17 @@
 
         </div>
 
+        <div class="mb-3 col-lg-12 col-md-12 col-sm-12 text-center">
+          É novo por aqui? Faça seu cadastro em uma das opções abaixo:
+        </div>
+
+
+        <div class="mb-3 col-lg-12 col-md-12 col-sm-12 text-center">
+              <a href="aspirante/new" class="btn btn-danger"> Cadastro de Aspirante</a>
+
+              <a href="clerigo/new" class="btn btn-success"> Cadastro de Clérigo</a>
+        </div>
+
       </div>
     </form>
 

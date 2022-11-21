@@ -55,6 +55,14 @@ $routes->get('mudar-senha/(:segment)',              'Seguranca\MudarSenhaControl
 $routes->post('mudar-senha/update/(:segment)',     'Seguranca\MudarSenhaController::update/$1');
 $routes->get('mudar-senha/delete/(:segment)',     'Seguranca\MudarSenhaController::delete/$1');
 
+//aspirante
+$routes->get('aspirante/new',                    'Seguranca\AspiranteController::new');
+$routes->post('aspirante',                       'Seguranca\AspiranteController::create');
+
+//Clerigo
+$routes->get('clerigo/new',                    'Seguranca\ClerigoController::new');
+$routes->post('clerigo',                       'Seguranca\ClerigoController::create');
+
 //Selecionar instituicao
 $routes->get('selecionar-instituicao/new',                    'Seguranca\SelecionarInstituicaoController::new');
 $routes->post('selecionar-instituicao',                       'Seguranca\SelecionarInstituicaoController::create');
@@ -115,13 +123,28 @@ $routes->post('comissao/update/(:segment)',     'ComissaoController::update/$1')
 $routes->get('comissao/delete/(:segment)',     'ComissaoController::delete/$1');
 
 //logar como
-$routes->get('troca-usuario/new',                	'Seguranca\LogarComoController::new');
-$routes->post('troca-usuario',                   	'Seguranca\LogarComoController::create');
-$routes->get('troca-usuario',                    	'Seguranca\LogarComoController::index');
-$routes->get('troca-usuario/(:segment)',    	  	'Seguranca\LogarComoController::edit/$1');
-$routes->post('troca-usuario/update/(:segment)', 	'Seguranca\LogarComoController::update/$1');
-$routes->get('troca-usuario/delete/(:segment)', 	'Seguranca\LogarComoController::delete/$1');
+$routes->get('troca-usuario/new',                    'Seguranca\LogarComoController::new');
+$routes->post('troca-usuario',                       'Seguranca\LogarComoController::create');
+$routes->get('troca-usuario',                        'Seguranca\LogarComoController::index');
+$routes->get('troca-usuario/(:segment)',              'Seguranca\LogarComoController::edit/$1');
+$routes->post('troca-usuario/update/(:segment)',     'Seguranca\LogarComoController::update/$1');
+$routes->get('troca-usuario/delete/(:segment)',     'Seguranca\LogarComoController::delete/$1');
 
+//Instituição
+$routes->get('aspirante-documentos/new',                    'Aspirantes\AspiranteDocumentoController::new');
+$routes->post('aspirante-documentos',                       'Aspirantes\AspiranteDocumentoController::create');
+$routes->get('aspirante-documentos',                        'Aspirantes\AspiranteDocumentoController::index');
+$routes->get('aspirante-documentos/(:segment)',             'Aspirantes\AspiranteDocumentoController::edit/$1');
+$routes->post('aspirante-documentos/update/(:segment)',     'Aspirantes\AspiranteDocumentoController::update/$1');
+$routes->get('aspirante-documentos/delete/(:segment)',      'Aspirantes\AspiranteDocumentoController::delete/$1');
+
+//Comissões
+$routes->get('clerigos/new',                     'Clerigo\ClerigoController::new');
+$routes->post('clerigos',                        'Clerigo\ClerigoController::create');
+$routes->get('clerigos',                         'Clerigo\ClerigoController::index');
+$routes->get('clerigos/(:segment)',              'Clerigo\ClerigoController::edit/$1');
+$routes->post('clerigos/update/(:segment)',      'Clerigo\ClerigoController::update/$1');
+$routes->get('clerigos/delete/(:segment)',       'Clerigo\ClerigoController::delete/$1');
 
 /*
  * --------------------------------------------------------------------

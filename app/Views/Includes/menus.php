@@ -44,19 +44,17 @@
         </a>
         <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
 
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Ministros</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Pastores</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Missionárias</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Aspirantes</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/clerigos">Clérigos</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/aspirante">Aspirantes</a></li>
 
         </ul>
     </li>
 
     <li class="sidebar-item">
-        <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <a data-bs-target="#pessoas" data-bs-toggle="collapse" class="sidebar-link collapsed">
             <i class="align-middle me-2 fas fa-fw fa-clipboard-list"></i> <span class="align-middle">Nomeações</span>
         </a>
-        <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <ul id="pessoas" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Sugerir Nomeções (SDs)</a></li>
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Relatório de Sugestões de Nomeações</a></li>
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Realizar Nomeações</a></li>

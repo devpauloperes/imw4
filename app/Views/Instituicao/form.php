@@ -1,6 +1,6 @@
 <div class="card mb-3">
     <div class="card-header">
-        <h5 class="mb-0">Dados do Usuário</h5>
+        <h5 class="mb-0">Dados da Instituição</h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -151,6 +151,45 @@
 </div>
 
 
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="mb-0">Informações estatísticas da instituição</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                <label for="qtd_capacidade_lotacao">Capacidade de Lotação</label>
+                <input class="form-control " id="qtd_capacidade_lotacao" name="qtd_capacidade_lotacao" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["qtd_capacidade_lotacao"] : ""; ?>" type="text" placeholder="">
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                <label for="qtd_membros">Quantidade de Membros</label>
+                <input class="form-control " id="qtd_membros" name="qtd_membros" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["qtd_membros"] : ""; ?>" type="text" placeholder="">
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                <label for="qtd_congregados">Quantidade de Congregados</label>
+                <input class="form-control " id="qtd_congregados" name="qtd_congregados" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["qtd_congregados"] : ""; ?>" type="text" placeholder="">
+            </div>
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                <label for="qtd_lideranca">Quantidade de Lideranças</label>
+                <input class="form-control " id="qtd_lideranca" name="qtd_lideranca" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["qtd_lideranca"] : ""; ?>" type="text" placeholder="">
+            </div>
+
+
+            <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                <label for="qtd_gceu">Quantidade de GCEUs</label>
+                <input class="form-control " id="qtd_gceu" name="qtd_gceu" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["qtd_gceu"] : ""; ?>" type="text" placeholder="">
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
 
 <div class="card mb-3">
     <div class="card-header">
@@ -175,8 +214,6 @@
 
 
 <script type="text/javascript">
-
-   
     jQuery(document).ready(function() {
 
         jQuery("#cep").change(function() {
@@ -212,6 +249,4 @@
 
 
     });
-
-
 </script>

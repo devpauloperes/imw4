@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Aspirante;
 
 use CodeIgniter\Model;
 
-class InstituicaoModel extends Model
+class AspiranteDocumentoModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'Instituicao';
+    protected $table            = 'aspirante_aspirante_documentos';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
@@ -15,11 +15,12 @@ class InstituicaoModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        
-        'nome', 'cnpj', 'email', 'dataAbertura', 'dataFechamento', 'tipoInstituicaoId', 'instituicaoId', 'cep', 'endereco', 
-        'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 'telefone', 'pastorId', 'tesoureiroId', 
-        'qtd_capacidade_lotacao', 'qtd_membros', 'qtd_lideranca', 'qtd_gceu', 'qtd_congregados'
-        ,'isAtivo', 'created_by', 'updated_by'
+        'aspiranteId', 'ano', 'arquivoEBD', 'arquivoDizimo', 'arquivoRecomendacaoPastor', 'arquivoDeclaracaoConviccaoChamado', 
+        'arquivoMembro4anos', 'arquivoAprovacaoProbatorioConselhoLocal', 'arquivoConclusaoTeologia', 'arquivoConclusaoTeologiaHistorico', 
+        'arquivoComplementacaoTeologica', 'arquivoNascimentoCasamento', 'arquivoSPC', 'arquivoSerasa', 'arquivoInss', 
+        'arquivoSubmissaoRegimeItinerante', 'arquivoProcessoJudicial', 'arquivoAposentado', 'arquivoDoenca', 'arquivoPsicotecnico', 
+        'arquivoEsposaNoiva', 'arquivoRG', 'arquivoCPF', 'arquivoTituloEleitor', 'arquivoCetificadoEscolar', 'arquivoFotoPessoal', 
+        'arquivoFotoFamiliar', 'arquivoQuitacaoIWE', 'arquivoEndereco', 'arquivoEntrevistaMinisterial',  'created_by', 'updated_by'
     ];
 
     // Dates

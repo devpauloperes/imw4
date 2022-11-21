@@ -59,6 +59,11 @@ class UsuarioController extends BaseController
                 "nome" => "Tesoureiro",
             ],
 
+            [
+                "id" => 5,
+                "nome" => "Aspirante",
+            ],
+
         
 
         ];
