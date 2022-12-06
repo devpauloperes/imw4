@@ -63,6 +63,8 @@ $routes->post('aspirante',                       'Seguranca\AspiranteController:
 $routes->get('clerigo/new',                    'Seguranca\ClerigoController::new');
 $routes->post('clerigo',                       'Seguranca\ClerigoController::create');
 
+
+
 //Selecionar instituicao
 $routes->get('selecionar-instituicao/new',                    'Seguranca\SelecionarInstituicaoController::new');
 $routes->post('selecionar-instituicao',                       'Seguranca\SelecionarInstituicaoController::create');
@@ -138,13 +140,94 @@ $routes->get('aspirante-documentos/(:segment)',             'Aspirantes\Aspirant
 $routes->post('aspirante-documentos/update/(:segment)',     'Aspirantes\AspiranteDocumentoController::update/$1');
 $routes->get('aspirante-documentos/delete/(:segment)',      'Aspirantes\AspiranteDocumentoController::delete/$1');
 
-//Comissões
+//clerigos - area privada
 $routes->get('clerigos/new',                     'Clerigo\ClerigoController::new');
 $routes->post('clerigos',                        'Clerigo\ClerigoController::create');
 $routes->get('clerigos',                         'Clerigo\ClerigoController::index');
 $routes->get('clerigos/(:segment)',              'Clerigo\ClerigoController::edit/$1');
 $routes->post('clerigos/update/(:segment)',      'Clerigo\ClerigoController::update/$1');
 $routes->get('clerigos/delete/(:segment)',       'Clerigo\ClerigoController::delete/$1');
+
+//dependentes
+$routes->get('clerigo-dependente/new',                     'Clerigo\ClerigoDependenteController::new');
+$routes->post('clerigo-dependente',                        'Clerigo\ClerigoDependenteController::create');
+$routes->get('clerigo-dependente',                         'Clerigo\ClerigoDependenteController::index');
+$routes->get('clerigo-dependente/(:segment)',              'Clerigo\ClerigoDependenteController::edit/$1');
+$routes->post('clerigo-dependente/update/(:segment)',      'Clerigo\ClerigoDependenteController::update/$1');
+$routes->get('clerigo-dependente/delete/(:segment)',       'Clerigo\ClerigoDependenteController::delete/$1');
+
+//curriculo
+$routes->get('clerigo-curriculo/new',                     'Clerigo\ClerigoCurriculoController::new');
+$routes->post('clerigo-curriculo',                        'Clerigo\ClerigoCurriculoController::create');
+$routes->get('clerigo-curriculo',                         'Clerigo\ClerigoCurriculoController::index');
+$routes->get('clerigo-curriculo/(:segment)',              'Clerigo\ClerigoCurriculoController::edit/$1');
+$routes->post('clerigo-curriculo/update/(:segment)',      'Clerigo\ClerigoCurriculoController::update/$1');
+$routes->get('clerigo-curriculo/delete/(:segment)',       'Clerigo\ClerigoCurriculoController::delete/$1');
+
+
+//carteira
+$routes->get('clerigo-carteira-ministerial/(:segment)',                         'Clerigo\ClerigoCarteiraMinisterialController::index/$1');
+
+//concilios
+$routes->get('concilios/new',                     'Concilio\ConcilioController::new');
+$routes->post('concilios',                        'Concilio\ConcilioController::create');
+$routes->get('concilios',                         'Concilio\ConcilioController::index');
+$routes->get('concilios/(:segment)',              'Concilio\ConcilioController::edit/$1');
+$routes->post('concilios/update/(:segment)',      'Concilio\ConcilioController::update/$1');
+$routes->get('concilios/delete/(:segment)',       'Concilio\ConcilioController::delete/$1');
+
+//curriculo
+$routes->get('concilio-votacao/new',                     'Concilio\VotacaoController::new');
+$routes->post('concilio-votacao',                        'Concilio\VotacaoController::create');
+$routes->get('concilio-votacao',                         'Concilio\VotacaoController::index');
+$routes->get('concilio-votacao/(:segment)',              'Concilio\VotacaoController::edit/$1');
+$routes->post('concilio-votacao/update/(:segment)',      'Concilio\VotacaoController::update/$1');
+$routes->get('concilio-votacao/delete/(:segment)',       'Concilio\VotacaoController::delete/$1');
+
+//curriculo
+$routes->get('concilio-votacao-opcao/new',                     'Concilio\VotacaoOpcaoController::new');
+$routes->post('concilio-votacao-opcao',                        'Concilio\VotacaoOpcaoController::create');
+$routes->get('concilio-votacao-opcao',                         'Concilio\VotacaoOpcaoController::index');
+$routes->get('concilio-votacao-opcao/(:segment)',              'Concilio\VotacaoOpcaoController::edit/$1');
+$routes->post('concilio-votacao-opcao/update/(:segment)',      'Concilio\VotacaoOpcaoController::update/$1');
+$routes->get('concilio-votacao-opcao/delete/(:segment)',       'Concilio\VotacaoOpcaoController::delete/$1');
+
+
+//curriculo
+$routes->get('concilio-informativos/new',                     'Concilio\ConcilioInformativoController::new');
+$routes->post('concilio-informativos',                        'Concilio\ConcilioInformativoController::create');
+$routes->get('concilio-informativos',                         'Concilio\ConcilioInformativoController::index');
+$routes->get('concilio-informativos/(:segment)',              'Concilio\ConcilioInformativoController::edit/$1');
+$routes->post('concilio-informativos/update/(:segment)',      'Concilio\ConcilioInformativoController::update/$1');
+$routes->get('concilio-informativos/delete/(:segment)',       'Concilio\ConcilioInformativoController::delete/$1');
+
+//curriculo
+$routes->get('concilio-pasta-relatorio/new',                     'Concilio\PastaRelatorioController::new');
+$routes->post('concilio-pasta-relatorio',                        'Concilio\PastaRelatorioController::create');
+$routes->get('concilio-pasta-relatorio',                         'Concilio\PastaRelatorioController::index');
+$routes->get('concilio-pasta-relatorio/(:segment)',              'Concilio\PastaRelatorioController::edit/$1');
+$routes->post('concilio-pasta-relatorio/update/(:segment)',      'Concilio\PastaRelatorioController::update/$1');
+$routes->get('concilio-pasta-relatorio/delete/(:segment)',       'Concilio\PastaRelatorioController::delete/$1');
+
+//curriculo
+$routes->get('concilio-relatorio/new',                     'Concilio\RelatorioController::new');
+$routes->post('concilio-relatorio',                        'Concilio\RelatorioController::create');
+$routes->get('concilio-relatorio',                         'Concilio\RelatorioController::index');
+$routes->get('concilio-relatorio/(:segment)',              'Concilio\RelatorioController::edit/$1');
+$routes->post('concilio-relatorio/update/(:segment)',      'Concilio\RelatorioController::update/$1');
+$routes->get('concilio-relatorio/delete/(:segment)',       'Concilio\RelatorioController::delete/$1');
+
+//curriculo
+$routes->get('concilio-conciliares/new',                     'Concilio\ConciliaresController::new');
+$routes->post('concilio-conciliares',                        'Concilio\ConciliaresController::create');
+$routes->get('concilio-conciliares',                         'Concilio\ConciliaresController::index');
+$routes->get('concilio-conciliares/(:segment)',              'Concilio\ConciliaresController::edit/$1');
+$routes->post('concilio-conciliares/update/(:segment)',      'Concilio\ConciliaresController::update/$1');
+$routes->get('concilio-conciliares/delete/(:segment)',       'Concilio\ConciliaresController::delete/$1');
+
+//atualizar lista de presentes
+$routes->get('concilio-lista-presentes',                         'Concilio\AtualizarPresentesController::index');
+
 
 /*
  * --------------------------------------------------------------------

@@ -20,17 +20,23 @@ class InstituicaoController extends BaseController
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
 
+        $modelTipo = new TipoInstituicaoModel();
+        $data["TipoInstituicao"] = $modelTipo->orderBy("nome")->findAll();
+
         $model = new InstituicaoModel();
         $data['registros'] = $model->select("Instituicao.*, TipoInstituicao.nome tipoInstituicaoNome")->join("TipoInstituicao", "TipoInstituicao.id = Instituicao.tipoInstituicaoId")->orderBy('nome', 'ASC');
 
         //caso seja necessário pesquisar por nome
         if ($this->request->getGet("nome"))
             $data['registros'] = $data['registros']->like('Instituicao.nome', $this->request->getGet("nome"));
-            
+
+        if ($this->request->getGet("tipoInstituicaoId"))
+            $data['registros'] = $data['registros']->where('Instituicao.tipoInstituicaoId', $this->request->getGet("tipoInstituicaoId"));
+
         $data['registros']  =  $data['registros']->paginate(env('registros.por.pagina'));
         $data['pager'] = $model->pager;
 
-        return view( $this->dirView. '/list', $data);
+        return view($this->dirView . '/list', $data);
     }
 
     public function new()
@@ -38,21 +44,21 @@ class InstituicaoController extends BaseController
         $data["titlePage"]  = $this->titlePage;
         $data["route"]      = $this->route;
         $data["dirView"]      = $this->dirView;
-        
+
         $tipoInstituicaoModel = new TipoInstituicaoModel();
         $data["TipoInstituicao"] = $tipoInstituicaoModel->findAll();
 
         $instituicaoModel = new InstituicaoModel();
         $data["Instituicao"] = $instituicaoModel->findAll();
 
-        return view( $this->dirView. '/new', $data);
+        return view($this->dirView . '/new', $data);
     }
 
     private function getDados()
     {
 
         $data["nome"] = $this->request->getPost("nome");
-        $data["cnpj"] = preg_replace('/[^0-9]/', '', $this->request->getPost("cnpj")); 
+        $data["cnpj"] = preg_replace('/[^0-9]/', '', $this->request->getPost("cnpj"));
         $data["email"] = $this->request->getPost("email");
 
         if ($this->request->getPost('dataAbertura') != "") {
@@ -64,7 +70,7 @@ class InstituicaoController extends BaseController
             $dataFechamento = DateTime::createFromFormat('d/m/Y', $this->request->getPost('dataFechamento'));
             $data["dataFechamento"] = date_format($dataFechamento, "Y-m-d");
         }
-        
+
         $data["tipoInstituicaoId"] = $this->request->getPost("tipoInstituicaoId");
         $data["instituicaoId"] = $this->request->getPost("instituicaoId");
         $data["cep"] = $this->request->getPost("cep");
@@ -78,14 +84,14 @@ class InstituicaoController extends BaseController
         $data["telefone"] = $this->request->getPost("telefone");
         $data["pastorId"] = $this->request->getPost("pastorId");
         $data["tesoureiroId"] = $this->request->getPost("tesoureiroId");
-        
-        $data["qtd_capacidade_lotacao"] = ($this->request->getPost("qtd_capacidade_lotacao") != "") ? $this->request->getPost("qtd_capacidade_lotacao") : 0 ;
-        $data["qtd_membros"] = ($this->request->getPost("qtd_membros")!= "") ? $this->request->getPost("qtd_membros") : 0;
-        $data["qtd_congregados"] = ($this->request->getPost("qtd_congregados")!= "") ? $this->request->getPost("qtd_congregados") : 0;
-        $data["qtd_lideranca"] = ($this->request->getPost("qtd_lideranca")!= "") ? $this->request->getPost("qtd_lideranca") : 0;
-        $data["qtd_gceu"] = ($this->request->getPost("qtd_gceu")!= "") ? $this->request->getPost("qtd_gceu") : 0;
-        
-        $data["isAtivo"] = ($this->request->getPost("isAtivo") != null) ? 1 : 0;        
+
+        $data["qtd_capacidade_lotacao"] = ($this->request->getPost("qtd_capacidade_lotacao") != "") ? $this->request->getPost("qtd_capacidade_lotacao") : 0;
+        $data["qtd_membros"] = ($this->request->getPost("qtd_membros") != "") ? $this->request->getPost("qtd_membros") : 0;
+        $data["qtd_congregados"] = ($this->request->getPost("qtd_congregados") != "") ? $this->request->getPost("qtd_congregados") : 0;
+        $data["qtd_lideranca"] = ($this->request->getPost("qtd_lideranca") != "") ? $this->request->getPost("qtd_lideranca") : 0;
+        $data["qtd_gceu"] = ($this->request->getPost("qtd_gceu") != "") ? $this->request->getPost("qtd_gceu") : 0;
+
+        $data["isAtivo"] = ($this->request->getPost("isAtivo") != null) ? 1 : 0;
 
         return $data;
     }
@@ -100,15 +106,13 @@ class InstituicaoController extends BaseController
 
         try {
             if ($model->insert($data)) {
-                return redirect()->to(base_url( $this->route . "?msg=Cadastro realizado com Sucesso!"));
+                return redirect()->to(base_url($this->route . "?msg=Cadastro realizado com Sucesso!"));
             } else {
-                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao salvar."));
+                return redirect()->to(base_url($this->route . "?erro=Houve uma falha ao salvar."));
             }
-            
         } catch (Exception $ex) {
-            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
+            return redirect()->to(base_url($this->route . "?erro=" . $ex->getMessage()));
         }
-        
     }
 
 
@@ -128,45 +132,41 @@ class InstituicaoController extends BaseController
         $model = new InstituicaoModel();
         $data['entidade'] = $model->where('id', $id)->first();
 
-        return view( $this->dirView. '/edit', $data);
+        return view($this->dirView . '/edit', $data);
     }
 
     public function update($id = null)
     {
         $model = new InstituicaoModel();
-        $data = $this->getDados(); 
-        $data["updated_by"] = $this->usuario["id"];       
+        $data = $this->getDados();
+        $data["updated_by"] = $this->usuario["id"];
 
         try {
 
             if ($model->update($id, $data)) {
                 return redirect()->to(base_url($this->route . "?msg=Cadastro alterado com Sucesso!"));
             } else {
-                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao alterar."));
+                return redirect()->to(base_url($this->route . "?erro=Houve uma falha ao alterar."));
             }
-            
         } catch (Exception $ex) {
-            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
+            return redirect()->to(base_url($this->route . "?erro=" . $ex->getMessage()));
         }
-
-        
     }
 
 
     public function delete($id = null)
     {
-        $model = new InstituicaoModel();        
+        $model = new InstituicaoModel();
 
         try {
-            
+
             if ($model->delete($id)) {
                 return redirect()->to(base_url($this->route . "?msg=Cadastro removido com Sucesso!"));
             } else {
-                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao remover."));
+                return redirect()->to(base_url($this->route . "?erro=Houve uma falha ao remover."));
             }
-            
         } catch (Exception $ex) {
-            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
-        }        
+            return redirect()->to(base_url($this->route . "?erro=" . $ex->getMessage()));
+        }
     }
 }

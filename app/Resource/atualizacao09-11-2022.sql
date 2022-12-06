@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS concilio_votacao (
   id int(11) NOT NULL AUTO_INCREMENT,
   concilioId int not null,
   nome varchar(200) not null,
+  descricao text,
   corun int,
   isVotacaoAberta int not null,
   
@@ -29,6 +30,22 @@ CREATE TABLE IF NOT EXISTS concilio_votacao_opcao (
   nome varchar(100) not null,
   descricao text,
   foto varchar(200),
+  ordem int,
+
+  created_at datetime NOT NULL,
+  created_by int NOT NULL,
+  updated_at datetime,
+  updated_by int,
+  deleted_at datetime,
+
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS concilio_votacao_voto (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  votacaoId int not null,
+  usuarioId int not null,
+  ip varchar(100),
 
   created_at datetime NOT NULL,
   created_by int NOT NULL,
@@ -67,12 +84,25 @@ create table if not exists concilio_relatorios(
 create table if not exists clerigo_curriculo_tipo_capacitacao(
     id int AUTO_INCREMENT,
     nome varchar(100) not null,
+
+    created_at datetime NOT NULL,
+    created_by int NOT NULL,
+    updated_at datetime,
+    updated_by int,
+    deleted_at datetime,
+
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
 create table if not exists clerigo_curriculo_area_capacitacao(
     id int AUTO_INCREMENT,
     nome varchar(100) not null,
+    
+    created_at datetime NOT NULL,
+    created_by int NOT NULL,
+    updated_at datetime,
+    updated_by int,
+    deleted_at datetime,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -86,6 +116,12 @@ create table if not exists clerigo_curriculo(
     cargaHoraria int not null,
     
     certificado varchar(200),
+
+    created_at datetime NOT NULL,
+    created_by int NOT NULL,
+    updated_at datetime,
+    updated_by int,
+    deleted_at datetime,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 

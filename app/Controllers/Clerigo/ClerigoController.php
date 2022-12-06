@@ -1,11 +1,14 @@
 <?php namespace App\Controllers\Clerigo;
 
 use App\Controllers\BaseController;
+use App\Models\Clerigo\ClerigoCurriculoModel;
+use App\Models\Clerigo\ClerigoDependenteModel;
 use App\Models\Clerigo\ClerigoModel;
 use App\Models\Clerigo\TipoClerigoModel;
 use App\Models\EscolaridadeModel;
 use App\Models\RacaModel;
 use DateTime;
+use Exception;
 
 class ClerigoController extends BaseController
 {
@@ -71,6 +74,7 @@ class ClerigoController extends BaseController
             'nomeConjuge'          => $this->request->getPost('nomeConjuge'),
             'conjugeCPF'          => $this->request->getPost('conjugeCPF'),
             'conjugeRg'          => $this->request->getPost('conjugeRg'),
+            'prebendas'          => str_replace(",", ".", $this->request->getPost('prebendas')),
             
             'conjugeRegimeBens'          => $this->request->getPost('conjugeRegimeBens'),
             'nomePai'          => $this->request->getPost('nomePai'),
@@ -102,63 +106,63 @@ class ClerigoController extends BaseController
         ];
 
         $img = $this->request->getFile('foto');
-        if ($img->isValid() && !$img->hasMoved()) {
+        if ( $img != null &&  $img->isValid() && !$img->hasMoved()) {
             $newName = $img->getRandomName();
             $img->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["foto"] = $newName;
         }
 
         $arquivoCtpsFile = $this->request->getFile('arquivoCtps');
-        if ($arquivoCtpsFile->isValid() && !$arquivoCtpsFile->hasMoved()) {
+        if ( $img != null && $arquivoCtpsFile->isValid() && !$arquivoCtpsFile->hasMoved()) {
             $newName = $data["cpf"] . $arquivoCtpsFile->getRandomName();
             $arquivoCtpsFile->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoCtps"] = $newName;
         }
 
         $arquivoPisFile = $this->request->getFile('arquivoPis');
-        if ($arquivoPisFile->isValid() && !$arquivoPisFile->hasMoved()) {
+        if ( $img != null && $arquivoPisFile->isValid() && !$arquivoPisFile->hasMoved()) {
             $newName = $data["cpf"] . $arquivoPisFile->getRandomName();
             $arquivoPisFile->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoPis"] = $newName;
         }
         
         $arquivoRgFile = $this->request->getFile('arquivoRg');
-        if ($arquivoRgFile->isValid() && !$arquivoRgFile->hasMoved()) {
+        if ( $img != null && $arquivoRgFile->isValid() && !$arquivoRgFile->hasMoved()) {
             $newName = $data["cpf"] . $arquivoRgFile->getRandomName();
             $arquivoRgFile->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoRg"] = $newName;
         }
 
         $arquivoCpfFile = $this->request->getFile('arquivoCpf');
-        if ($arquivoCpfFile->isValid() && !$arquivoCpfFile->hasMoved()) {
+        if ( $img != null && $arquivoCpfFile->isValid() && !$arquivoCpfFile->hasMoved()) {
             $newName = $data["cpf"] . $arquivoCpfFile->getRandomName();
             $arquivoCpfFile->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoCpf"] = $newName;
         }
         
         $arquivoTituloEleitorFile = $this->request->getFile('arquivoTituloEleitor');
-        if ($arquivoTituloEleitorFile->isValid() && !$arquivoTituloEleitorFile->hasMoved()) {
+        if ( $img != null && $arquivoTituloEleitorFile->isValid() && !$arquivoTituloEleitorFile->hasMoved()) {
             $newName = $data["cpf"] . $arquivoTituloEleitorFile->getRandomName();
             $arquivoTituloEleitorFile->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoTituloEleitor"] = $newName;
         }
         
         $arquivo = $this->request->getFile('arquivoCertidaoNascimentoCasamento');
-        if ($arquivo->isValid() && !$arquivo->hasMoved()) {
+        if ( $img != null && $arquivo->isValid() && !$arquivo->hasMoved()) {
             $newName = $data["cpf"] . $arquivo->getRandomName();
             $arquivo->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoCertidaoNascimentoCasamento"] = $newName;
         }
         
         $arquivo = $this->request->getFile('arquivoComprovanteResidencia');
-        if ($arquivo->isValid() && !$arquivo->hasMoved()) {
+        if ( $img != null && $arquivo->isValid() && !$arquivo->hasMoved()) {
             $newName = $data["cpf"] . $arquivo->getRandomName();
             $arquivo->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoComprovanteResidencia"] = $newName;
         }
         
         $arquivo = $this->request->getFile('arquivoExtratoPrevidenciario');
-        if ($arquivo->isValid() && !$arquivo->hasMoved()) {
+        if ( $img != null && $arquivo->isValid() && !$arquivo->hasMoved()) {
             $newName = $data["cpf"] . $arquivo->getRandomName();
             $arquivo->move(FCPATH . 'public/uploads/Clerigo/', $newName);
             $data["arquivoExtratoPrevidenciario"] = $newName;
@@ -209,10 +213,88 @@ class ClerigoController extends BaseController
         
         $model = new ClerigoModel();
         $data = $this->getDados();
+
+        //testa se já existe cadastro
+        $jaExiste = $model->where("cpf", $data["cpf"])->first();
+        if ($jaExiste != null)
+            return redirect()->to( base_url($this->rota . '/?erro=Este CPF já esta cadastrado em nosso sistema!') );
+
+
         $save = $model->insert($data);	
         
         return redirect()->to( base_url($this->rota . '/?msg=Cadastro realizado com Sucesso!') );
         
+    }
+
+    public function edit($id = null)
+    {
+        helper(['form', 'url']);
+
+        
+        $data["titlePage"]  = $this->titlePage;
+        $data["route"]      = $this->route;
+        $data["dirView"]      = $this->dirView;
+        
+        $tipoClerigoModel = new TipoClerigoModel();
+        $data["clerigo_tipo_clerigo"] = $tipoClerigoModel->findAll();
+
+        $escolaridadeModel = new EscolaridadeModel();
+        $data["escolaridade"] = $escolaridadeModel->findAll();
+
+        $racaModel = new RacaModel();
+        $data["raca"] = $racaModel->findAll();
+        
+        $dependenteModel = new ClerigoDependenteModel();
+        $data["dependentes"] = $dependenteModel->where("clerigoId", $id)->findAll();
+
+        $curriculoModel = new ClerigoCurriculoModel();
+        $data["curriculo"] = $curriculoModel->findAll();
+
+        $model = new ClerigoModel();
+        $data['entidade'] = $model->where('id', $id)->first();
+
+        
+
+        return view( $this->dirView. '/edit', $data);
+    }
+
+    public function update($id = null)
+    {
+        $model = new ClerigoModel();
+        $data = $this->getDados(); 
+        $data["updated_by"] = $this->usuario["id"];       
+
+        try {
+
+            if ($model->update($id, $data)) {
+                return redirect()->to(base_url($this->route . "?msg=Cadastro alterado com Sucesso!"));
+            } else {
+                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao alterar."));
+            }
+            
+        } catch (Exception $ex) {
+            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
+        }
+
+        
+    }
+
+
+    public function delete($id = null)
+    {
+        $model = new ClerigoModel();        
+
+        try {
+            
+            if ($model->delete($id)) {
+                return redirect()->to(base_url($this->route . "?msg=Cadastro removido com Sucesso!"));
+            } else {
+                return redirect()->to(base_url( $this->route . "?erro=Houve uma falha ao remover."));
+            }
+            
+        } catch (Exception $ex) {
+            return redirect()->to(base_url( $this->route . "?erro=" . $ex->getMessage()));
+        }        
     }
     
 

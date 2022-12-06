@@ -26,7 +26,8 @@
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/comissao">Comissões</a></li>
         </ul>
     </li>
-
+  
+    <!--
     <li class="sidebar-item">
         <a data-bs-target="#clerigo" data-bs-toggle="collapse" class="sidebar-link collapsed">
             <i class="align-middle me-2 fas fa-fw fa-user"></i> <span class="align-middle">Clérigos</span>
@@ -36,7 +37,7 @@
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Carteira Funcional</a></li>
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Atualizar dados</a></li>
         </ul>
-    </li>
+    </li>-->
 
     <li class="sidebar-item">
         <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
@@ -50,6 +51,8 @@
         </ul>
     </li>
 
+    <!--
+
     <li class="sidebar-item">
         <a data-bs-target="#pessoas" data-bs-toggle="collapse" class="sidebar-link collapsed">
             <i class="align-middle me-2 fas fa-fw fa-clipboard-list"></i> <span class="align-middle">Nomeações</span>
@@ -60,21 +63,31 @@
             <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Realizar Nomeações</a></li>
 
         </ul>
-    </li>
+    </li> -->
     
     <li class="sidebar-item">
         <a data-bs-target="#concilio" data-bs-toggle="collapse" class="sidebar-link collapsed">
             <i class="align-middle me-2 fas fa-fw fa-list"></i> <span class="align-middle">Concílios</span>
         </a>
         <ul id="concilio" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Gerenciar Concílios</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Candidatos</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/promotores">Delegados</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Lista de Presenças</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Votações</a></li>
-            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/membro">Votar</a></li>
+            
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilios">Gerenciar Concílios</a></li>
+            
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-informativos">Informativos</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-pasta-relatorio">Pastas de Relatórios</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-relatorio">Relatórios</a></li>
+
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-conciliares">Conciliares</a></li>
+
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-lista-presentes">Atualizar Lista de Presenças</a></li>
+
+            <li class="sidebar-item"><a class="sidebar-link" href="<?php echo base_url(); ?>/concilio-votacao">Votações</a></li>
+            
+        
         </ul>
     </li>
+
+    <!--
 
     <li class="sidebar-item">
         <a data-bs-target="#financeiro" data-bs-toggle="collapse" class="sidebar-link collapsed">
@@ -86,6 +99,8 @@
             
         </ul>
     </li>
+
+-->
 
     <li class="sidebar-item">
         <a data-bs-target="#seguranca" data-bs-toggle="collapse" class="sidebar-link collapsed">

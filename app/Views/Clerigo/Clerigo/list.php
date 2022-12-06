@@ -63,10 +63,14 @@
                         <tr>
 
                             <th>Nome</th>
-                            <th>Hierarquia</th>
-                            <th>Sigla</th>
+                            <th>CPF</th>
+                            <th>Estado</th>
+                            <th>Cidade</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+
                             
-                            <th width="150"></th>
+                            <th width="250"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,10 +79,14 @@
                             <tr>
 
                                 <td><?php echo $registro["nome"]; ?></td>
-                                <td><?php echo $registro["hierarquia"]; ?></td>
-                                <td><?php echo $registro["sigla"]; ?></td>
+                                <td><?php echo $registro["cpf"]; ?></td>
+                                <td><?php echo $registro["estado"]; ?></td>
+                                <td><?php echo $registro["cidade"]; ?></td>
+                                <td><?php echo $registro["email"]; ?></td>
+                                <td><?php echo $registro["celular"]; ?></td>
                                 
                                 <td class="table-action">
+                                    <a href="<?php echo base_url(); ?>/clerigo-carteira-ministerial/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-address-card"></i></a>
                                     <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
                                     <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo $route; ?>/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
                                 </td>

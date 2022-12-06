@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<form method="POST" action="./">
+<form method="POST" action="./"  enctype="multipart/form-data">
     <?= $this->include($dirView . '/form') ?>
     <?= $this->include('Includes/botao_salvar') ?>            
 </form>

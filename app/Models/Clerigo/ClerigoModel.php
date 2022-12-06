@@ -16,7 +16,7 @@ class ClerigoModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'tipoClerigoId', 'dataConsagracao', 'dataOrdenacao', 'nome', 'dataNascimento', 'email', 'nacionalidade', 'escolaridadeId', 
-        'sexo', 'foto', 'racaId', 'isPne', 'estadoCivil', 'nomeConjuge', 'conjugeCPF', 'conjugeRg', 'conjugeRgDataEmissao', 
+        'sexo', 'foto', 'racaId', 'isPne', 'estadoCivil', 'nomeConjuge', 'conjugeCPF', 'conjugeRg', 'conjugeRgDataEmissao', 'prebendas',
         'conjugeRegimeBens', 'nomePai', 'nomeMae', 'cpf', 'rg', 'dataEmissaoRg', 'ctps', 'dataEmissaoCtps', 'pis', 'tituloEleitoral', 
         'tituloEleitoralZona', 'tituloEleitoralSecao', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'pais', 
         'telefone', 'celular', 'isFilhos', 'isAtivo', 'dataInativo', 'arquivoCtps', 'arquivoPis', 'arquivoRg', 'arquivoCpf', 

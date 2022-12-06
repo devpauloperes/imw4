@@ -33,12 +33,23 @@
 
                 </div>
 
-                <div class="form-group col-lg-10 col-md-10 col-sm-9">
+
+                <div class="mb-3 col-lg-4 col-md-4 col-sm-12">
+                    <label for="tipoInstituicaoId">Tipo de Instituição</label>
+                    <select class="form-control select2" data-bs-toggle="select2" width="fit" name="tipoInstituicaoId" id="tipoInstituicaoId" required="required">
+                        <option value="" disabled selected>Selecione</option>
+                        <?php foreach ($TipoInstituicao as $item) : ?>
+                            <option value="<?php echo $item["id"]; ?>" <?php echo (isset($_GET["tipoInstituicaoId"]) and $item["id"] == $_GET["tipoInstituicaoId"] ) ? 'selected="selected"' : ""; ?>><?php echo $item["nome"]; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-7  col-md-5 col-sm-12">
                     <label for="nome">Nome</label>
                     <input class="form-control " id="nome" name="nome" maxlength="200" value="<?php echo (isset($_GET["nome"])) ? $_GET["nome"] : ""; ?>" type="text" placeholder="">
                 </div>
 
-               
+
 
                 <div class="form-group col-lg-1 col-md-1 col-sm-6 mt-4">
                     <button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
@@ -68,7 +79,8 @@
                             <th>Cidade</th>
                             <th>Telefone</th>
                             <th>Ativa</th>
-                            
+                            <th>Última Alteração</th>
+
                             <th width="150"></th>
                         </tr>
                     </thead>
@@ -83,7 +95,9 @@
                                 <td><?php echo $registro["cidade"]; ?> / <?php echo $registro["estado"]; ?> </td>
                                 <td><?php echo $registro["telefone"]; ?></td>
                                 <td><?php echo ($registro["isAtivo"] == 1) ? "Sim" : "Não"; ?></td>
-                                
+                                <td><?php echo (isset($registro) && isset($registro["updated_at"])) ? date("d/m/Y H:m", strtotime($registro["updated_at"])) : ""; ?></td>
+
+
                                 <td class="table-action">
                                     <a href="<?php echo base_url(); ?>/<?php echo $route; ?>/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
                                     <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo $route; ?>/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>

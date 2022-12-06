@@ -19,7 +19,7 @@
                </div>
 
                <div class="mb-3 col-lg-9 col-md-9 col-sm-12">
-                  <label for="nome">Nome Completo*</label>
+                  <label for="nome">Nome Completo* <small class="text text-danger">informe apenas o nome, não coloque Pastor xxxx ou Rev xxxx.</small></label>
                   <input class="form-control " id="nome" name="nome" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["nome"] : ""; ?>" type="text" placeholder="" required="required">
                </div>
 
@@ -152,6 +152,11 @@
                   <input class="form-control " id="nomeMae" name="nomeMae" maxlength="255" value="<?php echo (isset($entidade)) ? $entidade["nomeMae"] : ""; ?>" type="text" placeholder="">
                </div>
 
+               <div class="mb-3 col-lg-3 col-md-3 col-sm-6">
+                  <label for="prebendas">Qntd. de Prebendas</label>
+                  <input class="form-control" id="prebendas" name="prebendas" maxlength="50" value="<?php echo (isset($entidade)) ? str_replace(".", ",", $entidade["prebendas"]) : ""; ?>" type="text" placeholder="">
+               </div>
+
                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
                   <label for="foto">Foto</label> <br>
                   <input class="form-control-file" name="foto" id="foto" type="file">
@@ -209,6 +214,66 @@
       </div>
    </div>
 </div>
+
+
+<?php if (isset($entidade)) : ?>
+
+   <div class="card mb-3">
+      <div class="card-header">
+         <h5 class="mb-0">Dependentes</h5>
+         <a name="dependentes"></a>
+      </div>
+
+      <div class="card-body">
+         <div class="row">
+
+            <div class="col-12">
+               <a href="<?php echo base_url(); ?>/clerigo-dependente/new?id=<?php echo $entidade["id"]; ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo </a>
+               <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
+                  <thead class="thead-light">
+                     <tr>
+
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>CPF</th>
+
+
+
+                        <th width="150"></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <?php foreach ($dependentes as $registro) : ?>
+
+                        <tr>
+
+                           <td><?php echo $registro["nome"]; ?></td>
+                           <td ><?php echo ($registro["dataNascimento"] != null) ? date('d/m/Y', strtotime($registro["dataNascimento"]))  : "-" ; ?></td>                                
+                           <td><?php echo $registro["cpf"]; ?></td>
+
+
+                           <td class="table-action">
+                           <a href="<?php echo base_url(); ?>/clerigo-dependente/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                              <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo base_url(); ?>/clerigo-dependente/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                           </td>
+                        </tr>
+
+                     <?php endforeach; ?>
+
+                  </tbody>
+               </table>
+
+
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+<?php endif; ?>
+
+
+
 <div class="card">
    <div class="card-body">
 
@@ -616,46 +681,46 @@
 
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoCtps">CTPS <?php echo (isset($entidade) && $entidade["arquivoCtps"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCtps"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoCtps">CTPS <?php echo (isset($entidade) && $entidade["arquivoCtps"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCtps"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoCtps" id="arquivoCtps" type="file">
          </div>
 
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoPis">PIS <?php echo (isset($entidade) && $entidade["arquivoPis"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoPis"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoPis">PIS <?php echo (isset($entidade) && $entidade["arquivoPis"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoPis"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoPis" id="arquivoPis" type="file">
          </div>
 
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoRg">RG <?php echo (isset($entidade) && $entidade["arquivoRg"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoRg"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoRg">RG <?php echo (isset($entidade) && $entidade["arquivoRg"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoRg"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoRg" id="arquivoRg" type="file">
          </div>
 
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoCpf">CPF <?php echo (isset($entidade) && $entidade["arquivoCpf"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCpf"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoCpf">CPF <?php echo (isset($entidade) && $entidade["arquivoCpf"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCpf"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoCpf" id="arquivoCpf" type="file">
          </div>
 
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoTituloEleitor">Titulo de Eleitor <?php echo (isset($entidade) && $entidade["arquivoTituloEleitor"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoTituloEleitor"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoTituloEleitor">Titulo de Eleitor <?php echo (isset($entidade) && $entidade["arquivoTituloEleitor"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoTituloEleitor"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoTituloEleitor" id="arquivoTituloEleitor" type="file">
          </div>
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoCertidaoNascimentoCasamento">Certidão de Nascimento ou Casamento <?php echo (isset($entidade) && $entidade["arquivoCertidaoNascimentoCasamento"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCertidaoNascimentoCasamento"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoCertidaoNascimentoCasamento">Certidão de Nascimento ou Casamento <?php echo (isset($entidade) && $entidade["arquivoCertidaoNascimentoCasamento"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoCertidaoNascimentoCasamento"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoCertidaoNascimentoCasamento" id="arquivoCertidaoNascimentoCasamento" type="file">
          </div>
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoComprovanteResidencia">Comprovante de Residência <?php echo (isset($entidade) && $entidade["arquivoComprovanteResidencia"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoComprovanteResidencia"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoComprovanteResidencia">Comprovante de Residência <?php echo (isset($entidade) && $entidade["arquivoComprovanteResidencia"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoComprovanteResidencia"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoComprovanteResidencia" id="arquivoComprovanteResidencia" type="file">
          </div>
 
          <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-            <label for="arquivoExtratoPrevidenciario">Extrato da Previdência <?php echo (isset($entidade) && $entidade["arquivoExtratoPrevidenciario"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoExtratoPrevidenciario"] . ' target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
+            <label for="arquivoExtratoPrevidenciario">Extrato da Previdência <?php echo (isset($entidade) && $entidade["arquivoExtratoPrevidenciario"] != "") ? '<a href="' . base_url() . '/public/uploads/Pessoa/' . $entidade["arquivoExtratoPrevidenciario"] . '" target="_blank">Baixar documento enviado</a>'  : ""; ?> <small></small></label> <br>
             <input class="form-control-file" name="arquivoExtratoPrevidenciario" id="arquivoExtratoPrevidenciario" type="file">
          </div>
 
@@ -663,6 +728,61 @@
 
    </div>
 </div>
+
+
+<?php if (isset($entidade)) : ?>
+
+<div class="card mb-3">
+   <div class="card-header">
+      <h5 class="mb-0">Currículo</h5>
+      <a name="curriculo"></a>
+   </div>
+
+   <div class="card-body">
+      <div class="row">
+
+         <div class="col-12">
+            <a href="<?php echo base_url(); ?>/clerigo-curriculo/new?id=<?php echo $entidade["id"]; ?>" title="Inserir um novo registro" class="btn btn-primary right"> <i class="fas fa-plus-circle"></i> Novo </a>
+            <table class="table table-striped" style="font-size: 90%; margin-top: 15px;">
+               <thead class="thead-light">
+                  <tr>
+
+                     <th>Nome</th>
+                     <th>Carga Horária</th>
+
+
+
+                     <th width="150"></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <?php foreach ($curriculo as $registro) : ?>
+
+                     <tr>
+
+                        <td><?php echo $registro["nome"]; ?></td>
+                        <td><?php echo $registro["cargaHoraria"]; ?></td>
+
+
+                        <td class="table-action">
+                        <a href="<?php echo base_url(); ?>/clerigo-curriculo/<?php echo $registro["id"]; ?>" title="editar" class="btn"><i class="align-middle fas fa-fw fa-pen"></i></a>
+                           <a href="#<?php echo $registro["id"]; ?>" onclick="remover('<?php echo base_url(); ?>/clerigo-curriculo/delete/<?php echo $registro['id']; ?>');" title="apagar" class="btn"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                        </td>
+                     </tr>
+
+                  <?php endforeach; ?>
+
+               </tbody>
+            </table>
+
+
+         </div>
+
+      </div>
+   </div>
+</div>
+
+<?php endif; ?>
 
 
 <script type="text/javascript">
@@ -724,6 +844,7 @@
 
    viewEstadoCivil(jQuery("#estadoCivil").val());
    viewTipoPessoa(jQuery("#tipoPessoa").val());
+   viewTipoPessoa(jQuery("#tipoClerigoId").val()) 
 
    function viewEstadoCivil(vEstadoCivil) {
       if (vEstadoCivil == 'C' || vEstadoCivil == 'U') { //2 = casado

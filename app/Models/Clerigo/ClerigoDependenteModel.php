@@ -15,7 +15,8 @@ class ClerigoDependenteModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'clerigoId', 'nome', 'dataNascimento', 'cpf', 'arquivoCertidaoNascimento', 'arquivoRg', 'arquivoCpf', 'arquivoTituloEleitor', 
+        'clerigoId', 'nome', 'dataNascimento', 'cpf', 'arquivoCertidaoNascimento', 'arquivoRg', 'arquivoCpf', 
+        'arquivoTituloEleitor', 
         'arquivoCarteiraVacina',  'created_by', 'updated_by'
     ];
 

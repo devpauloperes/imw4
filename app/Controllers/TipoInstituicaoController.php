@@ -39,42 +39,42 @@ class TipoInstituicaoController extends BaseController
 
         $data["Cores"] = [
             [
-                "id" => ".bg-primary",
+                "id" => "bg-primary",
                 "nome" => "Azul",
             ],
 
             [
-                "id" => ".bg-secondary",
-                "nome" => "Cinhza",
+                "id" => "bg-secondary",
+                "nome" => "Cinza",
             ],
 
             [
-                "id" => ".bg-success",
+                "id" => "bg-success",
                 "nome" => "Verde",
             ],
 
             [
-                "id" => ".bg-danger",
+                "id" => "bg-danger",
                 "nome" => "Vermelho",
             ],
 
             [
-                "id" => ".bg-warning",
+                "id" => "bg-warning",
                 "nome" => "Amarelo",
             ],
 
             [
-                "id" => ".bg-info",
+                "id" => "bg-info",
                 "nome" => "Azul Claro (BB)",
             ],
 
             [
-                "id" => ".bg-light",
+                "id" => "bg-light",
                 "nome" => "Cinza Claro",
             ],
 
             [
-                "id" => ".bg-dark",
+                "id" => "bg-dark",
                 "nome" => "Preto",
             ],
 
@@ -125,42 +125,42 @@ class TipoInstituicaoController extends BaseController
 
         $data["Cores"] = [
             [
-                "id" => ".bg-primary",
+                "id" => "bg-primary",
                 "nome" => "Azul",
             ],
 
             [
-                "id" => ".bg-secondary",
-                "nome" => "Cinhza",
+                "id" => "bg-secondary",
+                "nome" => "Cinza",
             ],
 
             [
-                "id" => ".bg-success",
+                "id" => "bg-success",
                 "nome" => "Verde",
             ],
 
             [
-                "id" => ".bg-danger",
+                "id" => "bg-danger",
                 "nome" => "Vermelho",
             ],
 
             [
-                "id" => ".bg-warning",
+                "id" => "bg-warning",
                 "nome" => "Amarelo",
             ],
 
             [
-                "id" => ".bg-info",
-                "nome" => "Azul",
+                "id" => "bg-info",
+                "nome" => "Azul Claro (BB)",
             ],
 
             [
-                "id" => ".bg-light",
+                "id" => "bg-light",
                 "nome" => "Cinza Claro",
             ],
 
             [
-                "id" => ".bg-dark",
+                "id" => "bg-dark",
                 "nome" => "Preto",
             ],
 

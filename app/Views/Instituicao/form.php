@@ -42,12 +42,12 @@
 
             <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
                 <label for="dataAbertura">Data de Abertura</label>
-                <input class="form-control date" id="dataAbertura" name="dataAbertura" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataAbertura"] : ""; ?>" type="text" placeholder="">
+                <input class="form-control date" id="dataAbertura" name="dataAbertura" maxlength="20" value="<?php echo (isset($entidade) && isset($entidade["dataAbertura"])) ? date("d/m/Y", strtotime($entidade["dataAbertura"])) : ""; ?>" type="text" placeholder="">
             </div>
 
             <div class="mb-3 col-lg-3 col-md-3 col-sm-6 pf">
                 <label for="dataFechamento">Data de Fechamento</label>
-                <input class="form-control date" id="dataFechamento" name="dataFechamento" maxlength="20" value="<?php echo (isset($entidade)) ? $entidade["dataFechamento"] : ""; ?>" type="text" placeholder="">
+                <input class="form-control date" id="dataFechamento" name="dataFechamento" maxlength="20" value="<?php echo (isset($entidade) && isset($entidade["dataFechamento"])) ? date("d/m/Y", strtotime($entidade["dataFechamento"])) : ""; ?>" type="text" placeholder="">
             </div>
 
 
@@ -193,7 +193,7 @@
 
 <div class="card mb-3">
     <div class="card-header">
-        <h5 class="mb-0">Operações</h5>
+        <h5 class="mb-0">Situação</h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -204,6 +204,12 @@
                     <label class="custom-control-label" for="isAtivo">Ativo?</label>
                 </div>
             </div>
+
+            <div class="mb-3">
+                <p>Última alteração em <?php echo (isset($entidade) && isset($entidade["updated_at"])) ? date("d/m/Y H:m", strtotime($entidade["updated_at"])) : ""; ?></p>
+            </div>
+
+
 
 
         </div>
